@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema(
         },
         isAdmin: {
             type: Boolean,
-            default: flase
+            default: false
         }
     },
     {
