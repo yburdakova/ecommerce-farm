@@ -8,10 +8,10 @@ const CartSchema = new mongoose.Schema(
         },
         products: [
             {
-                porductId:{
+                porductId: {
                     type: String,
                 },
-                quanity:{
+                quanity: {
                     type: Number,
                     default: 1
                 },
