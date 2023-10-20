@@ -33,7 +33,7 @@ Welcome to the Farmer's Market Online Store project! This is a full-stack web ap
 
 - **Backend**: Node.js, Express, MongoDB
 
-- **Authentication**: JWT (JSON Web Tokens)
+- **Authentication**: 
 
 - **Payment Integration**: 
 
