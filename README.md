@@ -44,8 +44,7 @@ Welcome to the Farmer's Market Online Store project! This is a full-stack web ap
 ## Getting Started
 
 1. Clone the repository:
-    ```bash
-git clone https://github.com/yburdakova/ecommerce-farm.git
+    ```bash git clone https://github.com/yburdakova/ecommerce-farm.git
 
 2. Install dependencies for the frontend and backend
 3. Set up your environment variables
