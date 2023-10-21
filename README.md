@@ -31,7 +31,7 @@ Welcome to the Farmer's Market Online Store project! This is a full-stack web ap
 
 - **Frontend**: React, Redux, HTML, CSS
 
-- **Backend**: Node.js, Express, MongoDB, JSON Web Tokens (JWT)
+- **Backend**: Node.js, Express, MongoDB
 
 - **Authentication**: [CryptoJS](https://cryptojs.gitbook.io/docs/) using The Advanced Encryption Standard (AES)
 

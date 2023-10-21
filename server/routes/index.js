@@ -5,11 +5,13 @@ import categoryRouter from './category.js'
 import authRouter from './auth.js'
 import productRouter from './product.js'
 
+
 export {
     userRoute,
     cartRouter,
     orderRouter,
     authRouter,
     categoryRouter,
-    productRouter
+    productRouter,
+
 } 
