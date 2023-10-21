@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { userRoute, authRouter } from './routes/index.js';
+import { userRoute, authRouter, categoryRouter } from './routes/index.js';
 
 
 dotenv.config();
@@ -22,5 +22,7 @@ app.listen(process.env.PORT || 5555, ()=> {
 
 app.use(express.json());
 
-app.use("/api/users", userRoute)
+
 app.use("/api/auth", authRouter)
+app.use("/api/users", userRoute)
+app.use("/api/categories", categoryRouter)
