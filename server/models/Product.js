@@ -22,6 +22,10 @@ const ProductSchema = new mongoose.Schema(
                 }
             }
         ],
+        measure:{
+            type: String,
+            default: "pcs"
+        },
         price:{
             type: Number,
             required: true

@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { userRoute, authRouter, categoryRouter } from './routes/index.js';
+import { userRoute, authRouter, categoryRouter, productRouter } from './routes/index.js';
 
 
 dotenv.config();
@@ -26,3 +26,4 @@ app.use(express.json());
 app.use("/api/auth", authRouter)
 app.use("/api/users", userRoute)
 app.use("/api/categories", categoryRouter)
+app.use("/api/products", productRouter)

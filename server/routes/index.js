@@ -4,6 +4,7 @@ import orderRouter from './order.js'
 import categoryRouter from './category.js'
 import authRouter from './auth.js'
 import productRouter from './product.js'
+import paymentRouter from './stripe.js'
 
 
 export {
@@ -13,5 +14,5 @@ export {
     authRouter,
     categoryRouter,
     productRouter,
-
+    paymentRouter
 } 
