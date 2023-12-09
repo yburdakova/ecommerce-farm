@@ -1,33 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
+import { useState, useEffect } from 'react';
 import './App.css'
+import StripeCheckout, { Token } from 'react-stripe-checkout';
+import axios from 'axios';
+
+const PAYMENT_KEY ="pk_test_51O3JMuB2aDhCaXSC0Toq5EDANjnUk34necZjqXSbdc0QoV0FxTblPkjtrHqesaulQxX7ysPaknOXVSBAlD4UgfCk00lziA2DCG"
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [stripeToken, setStripeToken] = useState<Token | null>(null)
+
+
+  const onToken = (token: Token): void => {
+    setStripeToken(token)
+  }
+  
+
+  useEffect(()=> {
+    
+    const makeRequest = async () => {
+      if (stripeToken) {
+        try {
+          const response = await axios.post(
+            'http://localhost:5555/api/checkout/payment',
+            {
+              tokenId: stripeToken.id,
+              amount: 2000,
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+          console.log(response.data);
+        } catch (error) {
+          console.error("Ошибка при отправке запроса:", error);
+        }
+      }
+    };
+
+    stripeToken && makeRequest()
+  }, [stripeToken])
 
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+
+        <StripeCheckout 
+          token={onToken}
+          stripeKey={PAYMENT_KEY}
+          name="Farmer cheese company"
+          image="./assets/react.svg"
+          billingAddress
+          shippingAddress
+          description='Your total is $20'
+          amount={2000}
+          ComponentClass="paymentButton"
+        />
+          
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }

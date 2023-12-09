@@ -1,11 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { userRoute, authRouter, categoryRouter, productRouter } from './routes/index.js';
-
+import { userRoute, authRouter, categoryRouter, productRouter, stripeRouter } from './routes/index.js';
+import cors from 'cors';
 
 dotenv.config();
 const app = express();
+
+app.use(express.json());
+app.use(cors());
 
 mongoose
     .connect(process.env.MONGO_URL)
@@ -20,10 +23,13 @@ app.listen(process.env.PORT || 5555, ()=> {
     console.log('Backend server is running');
 });
 
-app.use(express.json());
-
-
 app.use("/api/auth", authRouter)
 app.use("/api/users", userRoute)
 app.use("/api/categories", categoryRouter)
 app.use("/api/products", productRouter)
+app.use("/api/checkout", stripeRouter)
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Internal Server Error');
+  });
