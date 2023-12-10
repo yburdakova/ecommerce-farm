@@ -7,11 +7,11 @@ const ProductSchema = new mongoose.Schema(
             required: true,
             unique: true
         },
-        decription:{
+        decription: {
             type: String,
             required: true,
         },
-        image:{
+        image: {
             type: String,
             required: true
         },
@@ -22,14 +22,18 @@ const ProductSchema = new mongoose.Schema(
                 }
             }
         ],
-        measure:{
+        measure: {
             type: String,
             default: "pcs"
         },
-        price:{
+        price: {
             type: Number,
             required: true
         },
+        inStock:{
+            type: Boolean,
+            default: true
+        }
     },
     {
         timestamps: true

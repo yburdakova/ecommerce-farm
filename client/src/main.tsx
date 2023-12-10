@@ -2,12 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import { Success } from './Success.tsx';
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import { Payment } from './Payment.tsx';
+import { Login, Product, ProductList, Register, Success } from './pages/index.tsx';
+
+
+const user = true;
 
 const router = createBrowserRouter([
   {
@@ -21,6 +21,26 @@ const router = createBrowserRouter([
   {
     path: "/success",
     element: <Success/>,
+  },
+  {
+    path: "/products/:category",
+    element: <ProductList/>,
+  },
+  {
+    path: "/products/:id",
+    element: <Product/>,
+  },
+  {
+    path: "/cart",
+    element: <Product/>,
+  },
+  {
+    path: "/login",
+    element: user ? <Navigate to="/" /> : <Login />,
+  },
+  {
+    path: "/register",
+    element: user ? <Navigate to="/" /> : <Register />,
   },
 ]);
 

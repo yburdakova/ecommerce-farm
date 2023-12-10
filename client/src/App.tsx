@@ -37,13 +37,13 @@ function App() {
           console.log(response.data);
           navigate('/success')
         } catch (error) {
-          console.error("Ошибка при отправке запроса:", error);
+          console.error( error);
         }
       }
     };
 
     stripeToken && makeRequest()
-  }, [stripeToken])
+  }, [stripeToken, navigate])
 
   return (
     <>
@@ -59,7 +59,6 @@ function App() {
         shippingAddress
         description='Your total is $20'
         amount={2000}
-        ComponentClass="paymentButton"
       />}
         
           
