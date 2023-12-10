@@ -4,7 +4,7 @@ import App from './App.tsx'
 import './index.css'
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import { Payment } from './Payment.tsx';
-import { Login, Product, ProductList, Register, Success } from './pages/index.tsx';
+import { Cart, Login, Product, ProductList, Register, Success } from './pages/index.tsx';
 
 
 const user = true;
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/cart",
-    element: <Product/>,
+    element: <Cart/>,
   },
   {
     path: "/login",

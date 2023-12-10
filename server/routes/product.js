@@ -1,7 +1,6 @@
 import express from "express";
 import { Product } from "../models/index.js";
-import CryptoJS from "crypto-js";
-import { verifyTokenAndAuthorization, verifyTokenAndAdmin } from "./verifyToken.js";
+import { verifyTokenAndAdmin } from "./verifyToken.js";
 const router = express.Router();
 
 //NEW PRODUCT
@@ -50,14 +49,13 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
     }
 });
 
-//GET ONE PRODUCT
-router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
+//GET PRODUCT
+router.get("/find/:id", async (req, res) => {
     try {
-    const user = await Product.findById(req.params.id);
-    const { password, ...others } = user._doc;
-    res.status(200).json(others);
+        const product = await Product.findById(req.params.id);
+        res.status(200).json(product);
     } catch (err) {
-    res.status(500).json(err);
+        res.status(500).json(err);
     }
 });
 
@@ -75,7 +73,6 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
 });
 
 //GET PRODUCT STATS
-
 router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
     const date = new Date();
     const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
