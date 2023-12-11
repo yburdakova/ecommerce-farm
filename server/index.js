@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { userRoute, authRouter, categoryRouter, productRouter, stripeRouter } from './routes/index.js';
+import { authRouter, categoryRouter, productRouter, stripeRouter, userRouter } from './routes/index.js';
 import cors from 'cors';
 
 dotenv.config();
@@ -24,7 +24,7 @@ app.listen(process.env.PORT || 5555, ()=> {
 });
 
 app.use("/api/auth", authRouter)
-app.use("/api/users", userRoute)
+app.use("/api/users", userRouter)
 app.use("/api/categories", categoryRouter)
 app.use("/api/products", productRouter)
 app.use("/api/checkout", stripeRouter)

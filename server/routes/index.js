@@ -1,4 +1,4 @@
-import userRoute from './user.js'
+import userRouter from './user.js'
 import cartRouter from './cart.js'
 import orderRouter from './order.js'
 import categoryRouter from './category.js'
@@ -8,7 +8,7 @@ import stripeRouter from './stripe.js'
 
 
 export {
-    userRoute,
+    userRouter,
     cartRouter,
     orderRouter,
     authRouter,
