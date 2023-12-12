@@ -6,10 +6,8 @@ const router = express.Router();
 
 
 //CREATE
-
 router.post("/", verifyToken, async (req, res) => {
   const newOrder = new Order(req.body);
-
   try {
     const savedOrder = await newOrder.save();
     res.status(200).json(savedOrder);
@@ -19,7 +17,6 @@ router.post("/", verifyToken, async (req, res) => {
 });
 
 //UPDATE
-
 router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     const updatedOrder = await Order.findByIdAndUpdate(

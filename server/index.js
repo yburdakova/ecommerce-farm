@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { authRouter, categoryRouter, productRouter, stripeRouter, userRouter } from './routes/index.js';
+import { authRouter, categoryRouter, productRouter, stripeRouter, userRouter, orderRouter , cartRouter} from './routes/index.js';
 import cors from 'cors';
 
 dotenv.config();
@@ -28,8 +28,11 @@ app.use("/api/users", userRouter)
 app.use("/api/categories", categoryRouter)
 app.use("/api/products", productRouter)
 app.use("/api/checkout", stripeRouter)
+app.use("/api/orders", orderRouter)
+app.use("/api/cart", cartRouter)
+
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Internal Server Error');
-  });
+});
