@@ -2,7 +2,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { Cart, Home, Login, Product, ProductList, Register } from './pages'
-import { Categories, Footer, Header } from './components';
+import { Footer, Header } from './components';
 
 function App() {
   
