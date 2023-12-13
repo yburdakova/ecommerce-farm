@@ -40,6 +40,7 @@
   font-weight: bold;
 }
 
+
 .iconBox{
   display: flex;
   width: 70px;
@@ -54,18 +55,31 @@
 
 }
 
+.container > a .iconBox,
+.container > a .title {
+  transition: transform 0.2s ease; 
+}
+
+.container > a.active > * {
+  transition: transform 0.2s ease; 
+}
+
+.container > a:hover .iconBox,
+.container > a:hover .title {
+  transform: translate(-1px, -1px); 
+}
+
 @media (prefers-color-scheme: light) {
   .container > a:hover{
-    border-radius: 50%;
     background: #ffffff;
-    box-shadow:  5px 5px 18px #d1d1d1,
-                -5px -5px 18px #ffffff;
+    box-shadow:  5px 5px 12px #bababa,
+                -5px -5px 12px #ffffff;
       }
 
   .container > a.active{
     border-radius: 50%;
     background: #ffffff;
-    box-shadow:  5px 5px 18px #d1d1d1,
-                -5px -5px 18px #ffffff;
+    box-shadow:  5px 5px 5px #d1d1d1,
+                -5px -5px 5px #ffffff;
       }
 }
