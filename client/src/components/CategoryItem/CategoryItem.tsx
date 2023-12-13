@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import styles from './CategoryItem.module.css'
 
-interface CategoryItem {
+interface CategoryItemProps {
   item: { 
     id: number; 
     title: string; 
@@ -9,7 +9,7 @@ interface CategoryItem {
   key: number; 
 }
 
-export const CategoryItem = ({ item}: CategoryItem) => {
+export const CategoryItem = ({ item}: CategoryItemProps) => {
 
   const location = useLocation();
   const isActive = location.pathname.includes(`/products/${item.title}`);

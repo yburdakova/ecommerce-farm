@@ -4,4 +4,30 @@
 
 .productList{
   margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+.service{
+  display: flex;
+justify-content: space-between;
+width: 100%;
+}
+
+.catTitle{
+  text-transform: capitalize;
+  font-size: 32px;
+  margin: 0;
+}
+.sortContainer{
+  display: flex;
+  gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sortTitle{
+
 }
