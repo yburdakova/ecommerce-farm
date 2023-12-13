@@ -1,5 +1,14 @@
 .container{
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 100px;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width:768px) {
+  .container{
+    gap: 40px;
+  }
+  
 }

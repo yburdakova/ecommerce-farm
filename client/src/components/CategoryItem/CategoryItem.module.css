@@ -1,12 +1,71 @@
 .container{
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.container > a{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  padding: 20px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.3s ease 0s;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.container > a:hover{
+  border-radius: 50%;
+  background: linear-gradient(145deg, #202020, #272727);
+  box-shadow:  3px 3px 3px #151515,
+              -3px -3px 3px #333333;
+}
+
+.container > a.active{
+  border-radius: 50%;
+  background: linear-gradient(145deg, #202020, #272727);
+  box-shadow:  3px 3px 3px #151515,
+              -3px -3px 3px #333333;
 }
 
 .title{
   text-transform:capitalize;
   text-align: center;
   font-weight: bold;
+}
+
+.iconBox{
+  display: flex;
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+
+}
+.ticonBox > img{
+  display: flex;
+  width: 100%;
+  object-fit: cover;
+
+}
+
+@media (prefers-color-scheme: light) {
+  .container > a:hover{
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow:  5px 5px 18px #d1d1d1,
+                -5px -5px 18px #ffffff;
+      }
+
+  .container > a.active{
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow:  5px 5px 18px #d1d1d1,
+                -5px -5px 18px #ffffff;
+      }
 }
