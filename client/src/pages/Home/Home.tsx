@@ -1,20 +1,14 @@
-import styles from './Home.module.css'
-import { Categories, Footer, Header } from '../../components'
+import { Categories } from "../../components"
+
 
 const Home = () => {
   return (
-    <div className={styles.wrapper}>
-      <Header/>
       <main>
+        <Categories/>
         <section className="slider"></section>
-        <section className="categories">
-          <Categories/>
-        </section>
         <section className="products"></section>
         <section className="newsletter"></section>
       </main>
-      <Footer/>
-    </div>
   )
 }
 
