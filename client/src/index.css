@@ -1,10 +1,10 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  --text-accent: #B0907A;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: #FFFFFFDE;
   background-color: #242424;
 
   font-synthesis: none;
@@ -14,8 +14,7 @@
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
+  color:#FFFFFFDE;
   text-decoration: inherit;
 }
 a:hover {
@@ -69,6 +68,9 @@ button:focus-visible {
   :root {
     color: #213547;
     background-color: #ffffff;
+  }
+  a{
+    color: #213547;
   }
   a:hover {
     color: #747bff;

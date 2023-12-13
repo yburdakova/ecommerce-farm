@@ -1,0 +1,193 @@
+footer{
+  display: flex;
+  margin-bottom: 40px;
+  align-items: center;
+  background-color: var(--background-container);
+  padding: 100px;
+  padding-bottom: 0;
+  border-radius: 40px;
+  gap: 120px;
+  box-sizing: border-box;
+}
+h2{
+  font-size: 46px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%;
+  margin: 0;
+}
+.contactContent{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--text-light);
+  text-decoration: none;
+}
+
+.offer,
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  color: var(--text-light)
+}
+
+.contactItem{
+  display: inline-flex;
+  gap: 8px;
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 600;
+  line-height: 150%;
+  position: relative;
+}
+
+.contactIcon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+}
+
+.address{
+  background-image: url(./../../assets/icons/pin-alt-light.svg);
+}
+.phone{
+  background-image: url(./../../assets/icons/phone-light.svg);
+}
+.clock{
+  background-image: url(./../../assets/icons/clock-light.svg);
+}
+a.contactItem::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  background-color: var(--text-light);
+  opacity: 0;
+  transition: all 0.3s ease 0s;
+}
+
+.contactItem:hover::after {
+  opacity: 1;
+  animation-name: slidein;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.socials{
+  display: flex;
+  gap: 12px;
+  
+}
+
+.socialButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  transition: all 0.3s ease 0s;
+  border: 1px solid  rgba(255, 255, 255, 0.87);
+}
+.socialButton:hover{
+  border: 1px solid  #FFFFFFDE;
+}
+.twitter{
+  background-image: url(./../../assets/icons/twitter-light.svg);
+}
+
+.twitter:hover{
+  background: #FFFFFFDE;
+  background-image: url(./../../assets/icons/twitter-dark.svg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.instagram{
+  background-image: url(./../../assets/icons/instagram-light.svg);
+}
+.instagram:hover{
+  background: #FFFFFFDE;
+  background-image: url(./../../assets/icons/instagram-dark.svg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.facebook{
+  background-image: url(./../../assets/icons/facebook-light.svg);  
+}
+.facebook:hover{
+  background: #FFFFFFDE;
+  background-image: url(./../../assets/icons/facebook-dark.svg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+@media (prefers-color-scheme: light) {
+  .socialButton{
+    border: 1px solid  #213547;
+  }
+  .instagram{
+    background-image: url(./../../assets/icons/instagram-dark.svg);
+  }
+  .instagram:hover{
+    background: #213547;
+    background-image: url(./../../assets/icons/instagram-light.svg);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  .facebook{
+    background-image: url(./../../assets/icons/facebook-dark.svg);  
+  }
+  .facebook:hover{
+    background: #213547;
+    background-image: url(./../../assets/icons/facebook-light.svg);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  .twitter{
+    background-image: url(./../../assets/icons/twitter-dark.svg);
+  }
+  .twitter:hover{
+    background: #213547;
+    background-image: url(./../../assets/icons/twitter-light.svg);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  .address{
+    background-image: url(./../../assets/icons/pin-alt-dark.svg);
+  }
+  .phone{
+    background-image: url(./../../assets/icons/phone-dark.svg);
+  }
+  .clock{
+    background-image: url(./../../assets/icons/clock-dark.svg);
+  }
+}
+
+@media screen and (max-width: 768px){
+  footer{
+    gap: 60px;
+    padding: 40px;
+  }
+  .contactInfo{
+    gap: 20px;
+  }
+  h2{
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 530px){
+  footer{
+    gap: 20px;
+    flex-direction: column;
+  }
+}
