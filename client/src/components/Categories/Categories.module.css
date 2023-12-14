@@ -1,13 +1,14 @@
-.container{
+.categoriesContainer{
   display: flex;
   width: 100%;
   justify-content: center;
-  gap: 60px;
+  gap: 40px;
   flex-wrap: wrap;
+  margin: 40px 0;
 }
 
 @media screen and (max-width:768px) {
-  .container{
+  .categoriesContainer{
     gap: 40px;
   }
   

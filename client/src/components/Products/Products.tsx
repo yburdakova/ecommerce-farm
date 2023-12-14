@@ -31,7 +31,12 @@ const Products = ( { cat, sort } : ProductsProps) => {
 useEffect(() => {
   if (sort === "newest") {
     setProductList((prev) =>
-      [...prev].sort((a, b) =>new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    [...prev].sort((a, b) => {
+      const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+      const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+  
+      return dateB.getTime() - dateA.getTime();
+    })
     );
   } else if (sort === "asc") {
     setProductList((prev) =>
@@ -47,10 +52,10 @@ useEffect(() => {
   return (
     <div className={styles.productsContainer}>
     {cat
-        ? productList.map((item) => <ProductItem item={item} key={item._id} />)
+        ? productList.map((item, index) => <ProductItem item={item} key={index} />)
         : productList
             .slice(0, 9)
-            .map((item) => <ProductItem item={item} key={item._id} />)}
+            .map((item, index) => <ProductItem item={item} key={index} />)}
   </div>
   )
 }

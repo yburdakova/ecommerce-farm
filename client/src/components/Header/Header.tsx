@@ -1,3 +1,4 @@
+import { Cart } from '../../pages'
 import styles from './Header.module.css'
 
 export const Header = () => {
@@ -5,7 +6,7 @@ export const Header = () => {
     <header>
         <div className={styles.logo}>LOGO</div>
         <nav className="menu">MENU</nav>
-        <div className="cart">CART</div>
+        <Cart/>
         <div className="user">USER</div>
         <div className="user">LANG</div>
       </header>

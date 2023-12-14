@@ -4,7 +4,7 @@ import { CategoryItem } from '..'
 
 export const Categories = () => {
   return (
-    <div className={styles.container}>
+    <div className={styles.categoriesContainer}>
       {categories.map((item) => (
         <CategoryItem item={item} key={item.id}/>
       ))}

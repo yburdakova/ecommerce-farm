@@ -1,8 +1,8 @@
-import axios from 'axios';
 import styles from './Product.module.css'
 import  { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import { ProductData } from '../../constants/types';
+import { publicRequest } from '../../redux/requestMethods';
 
 const Product = () => {
   const location = useLocation();
@@ -24,7 +24,7 @@ const Product = () => {
   useEffect(()=>{
     const getProducts = async () => {
       try {
-        const res = await axios.get( `http://localhost:5555/api/products/find/${id}`);
+        const res = await publicRequest ( `/products/find/${id}`);
         setProduct(res.data);
       } catch (err) {
         console.log(err);
@@ -41,9 +41,13 @@ const Product = () => {
   }
 
   const handleClickDecrease = () => {
-    if(quantity > 0) {
+    if(quantity > 1) {
       setQuantity(quantity-1)
     }
+  }
+
+  const handleClickCartButton = () => {
+    
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,6 +71,14 @@ const Product = () => {
             <div className={styles.name}>Description:</div>
             <div className={styles.text}>{product.decription}</div>
           </div>
+          <div className={styles.catBox}>
+            <div className={styles.name}>Categories:</div>
+            <div className={styles.categories}>
+              {product.categories?.map(((category) => 
+                <div className={styles.cat} key={category}>{category}</div>
+              ))}
+            </div>
+          </div>
           <div className={styles.textBox}>
             <div className={styles.price}>$ {product.price} / {product.measure}</div>
           </div>
@@ -76,7 +88,7 @@ const Product = () => {
               <input type="text" value={quantity} onChange={handleInputChange}/>
               <div className={styles.counterButton} onClick={handleClickIncrease}>+</div>
             </div>
-            <button>ADD TO CART</button>
+            <button onClick={handleClickCartButton}>ADD TO CART</button>
           </div>
         </div>
       </div>

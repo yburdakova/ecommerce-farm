@@ -68,7 +68,19 @@
   display: flex;
   justify-content: center;
   text-align: center;
+}
 
+.catBox{
+  display: flex;
+}
+
+.categories{
+  display: flex;
+  font-size: 1.6rem;
+}
+.cat:not(:last-child):after{
+  content: ",";
+  margin-right: 6px;
 }
 
 @media screen and (max-width:768px){ 

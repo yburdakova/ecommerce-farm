@@ -1,5 +1,4 @@
 
-
 export interface CategoryItemProps {
   item: { 
     id: number; 
@@ -8,18 +7,13 @@ export interface CategoryItemProps {
   key: number; 
 }
 
-export interface ProductItemProps{
-  item: {
-    _id: string;
-    image: string;
-    title: string;
-    price: number;
-  }
-}
-
 export interface ProductsProps {
   cat: string;
   sort: string;
+}
+
+export interface ProductItemProps{
+  item: ProductData
 }
 
 export interface ProductData {
@@ -40,3 +34,8 @@ export interface SortBarProps {
   onInputChange: (value: string) => void;
 }
 
+export interface CartState {
+  products: ProductData[];
+  quantity: number;
+  totalPrice: number;
+}

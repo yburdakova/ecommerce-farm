@@ -54,11 +54,6 @@ export const categories = [
     id: 6,
     title: "butter",
     img: meat
-  },
-  {
-    id: 7,
-    title: "cream",
-    img: meat
   }
 ];
 

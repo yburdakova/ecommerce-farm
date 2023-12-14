@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { ProductItemProps } from '../../constants/types'
 
 
-const ProductItem = ({ item }: ProductItemProps) => {
+const ProductItem: React.FC<ProductItemProps> = ({ item }) => {
   return (
     <div className={styles.container}>
       <Link className={styles.imgBox} to={`/product/${item._id}`}>
@@ -14,7 +14,7 @@ const ProductItem = ({ item }: ProductItemProps) => {
       <div className={styles.service}>
       <div className={styles.info}>
         <h3 className={styles.title}>{item.title}</h3>
-        <div className={styles.price}>$ {item.price}</div>
+        <div className={styles.price}><span className={styles.bold}>${item.price}</span> / {item.measure}</div>
       </div>
       <div className={styles.cartBox}>
         <img src={cart} alt="cart icon"/>

@@ -5,6 +5,8 @@ import { Categories } from "./Categories/Categories";
 import Products from "./Products/Products";
 import ProductItem from "./ProductItem/ProductItem";
 import SortBar from "./SortBar/SortBar";
+import CartBox from "./CartBox/CartBox";
+
 
 
 export {
@@ -14,5 +16,6 @@ export {
   Categories,
   Products,
   ProductItem,
-  SortBar
+  SortBar,
+  CartBox
 }

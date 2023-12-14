@@ -1,6 +1,21 @@
 .productsContainer{
   display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  overflow: hidden;
   gap: 40px;
-  grid-template-columns: repeat(3, 1fr);
-  margin: 20px 0;
+  flex-wrap: wrap;
+  max-width: 100%;
+  padding: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .productsContainer{
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .productsContainer{
+    grid-template-columns: repeat(1, 1fr); 
+  }
 }
