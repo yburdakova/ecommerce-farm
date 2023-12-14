@@ -2,7 +2,7 @@ import styles from './Product.module.css'
 import  { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import { ProductData } from '../../constants/types';
-import { publicRequest } from '../../redux/requestMethods';
+import { publicRequest } from '../../middleware/requestMethods';
 
 const Product = () => {
   const location = useLocation();

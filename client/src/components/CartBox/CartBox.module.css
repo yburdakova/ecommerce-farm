@@ -1,0 +1,42 @@
+.cartBox{
+  display: flex;
+  width: 40px;
+  position: relative;
+}
+.cartBox img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.quantity{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  bottom: -2px;
+  right: -2px;
+  border-radius: 50%;
+  background-color: #FD0505;
+  padding: 3px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a{
+    color: #213547;
+  }
+  a:hover {
+    color: var(--text-accent);
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
