@@ -37,7 +37,14 @@ const Product = () => {
           <div className={styles.textBox}>
             <div className={styles.price}>$ {product.price} / {product.measure}</div>
           </div>
-          <div className="orderBox"></div>
+          <div className={styles.orderBox}>
+            <div className={styles.counterBox}>
+              <div className={styles.counterButton}>-</div>
+              <input type="text" value={1} />
+              <div className={styles.counterButton}>+</div>
+            </div>
+            <button>ADD TO CART</button>
+          </div>
         </div>
       </div>
 

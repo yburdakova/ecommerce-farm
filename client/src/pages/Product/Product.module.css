@@ -15,7 +15,11 @@
   height: 100%;
   object-fit: cover;
 }
-
+.contentBox{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .title{
   font-size: 3rem;
   font-weight: 600;
@@ -39,4 +43,49 @@
   font-size: 2.2rem;
   font-weight: 800;
 
+}
+
+.orderBox{
+  display: flex;
+}
+.counterBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 120px;
+}
+.counterButton{
+  font-size: 2.2rem;
+  margin: 5px;
+  cursor: pointer;
+}
+.counterBox input{
+  font-size: 1.8rem;
+  width: 40px;
+  height: 40px;
+  border-radius:10px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+}
+
+@media screen and (max-width:768px){ 
+  .productBox{
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .orderBox{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .counterBox{
+    width: 100%;
+    margin: 0;
+  }
+  .orderBox button{
+    margin-top: 20px;
+    height: 60px;
+    width: 50%;
+  }
 }
