@@ -3,25 +3,9 @@ import styles from './Products.module.css'
 import { useEffect, useState } from 'react'
 import { ProductItem } from '..';
 import axios from 'axios';
+import { ProductData, ProductsProps } from '../../constants/types';
 
 
-interface ProductsProps {
-  cat: string;
-  sort: string;
-}
-
-interface ProductData {
-  _id: string;
-  title: string;
-  decription: string;
-  image: string;
-  categories: string[];
-  measure: string;
-  price: number;
-  inStock: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-}
 
 const Products = ( { cat, sort } : ProductsProps) => {
   

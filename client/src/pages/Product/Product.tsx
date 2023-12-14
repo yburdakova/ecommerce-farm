@@ -2,14 +2,7 @@ import axios from 'axios';
 import styles from './Product.module.css'
 import  { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
-
-interface ProductData {
-  image: string;
-  title: string;
-  decription: string;
-  price: number;
-  measure: string;
-}
+import { ProductData } from '../../constants/types';
 
 const Product = () => {
   const location = useLocation();

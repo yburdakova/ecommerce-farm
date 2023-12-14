@@ -1,13 +1,8 @@
 import { useLocation } from 'react-router-dom';
 import styles from './CategoryItem.module.css'
+import { CategoryItemProps } from '../../constants/types';
 
-interface CategoryItemProps {
-  item: { 
-    id: number; 
-    title: string; 
-    img: string; }; 
-  key: number; 
-}
+
 
 export const CategoryItem = ({ item}: CategoryItemProps) => {
 

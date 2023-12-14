@@ -1,15 +1,8 @@
 import styles from './ProductItem.module.css'
 import { cart } from '../../assets'
 import { Link } from 'react-router-dom'
+import { ProductItemProps } from '../../constants/types'
 
-interface ProductItemProps{
-  item: {
-    _id: string;
-    image: string;
-    title: string;
-    price: number;
-  }
-}
 
 const ProductItem = ({ item }: ProductItemProps) => {
   return (

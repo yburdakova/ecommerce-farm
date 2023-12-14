@@ -1,9 +1,5 @@
+import { SortBarProps } from '../../constants/types'
 import styles from './SortBar.module.css'
-
-interface SortBarProps {
-  cat: string;
-  onInputChange: (value: string) => void;
-}
 
 const SortBar: React.FC<SortBarProps> = ({cat, onInputChange}) => {
 

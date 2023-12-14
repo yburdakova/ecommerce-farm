@@ -6,7 +6,6 @@ const Home = () => {
       <main>
         <Categories/>
         <Products cat="" sort=""/>
-        <section className="newsletter"></section>
       </main>
   )
 }
