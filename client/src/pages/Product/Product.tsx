@@ -1,8 +1,49 @@
-import React from 'react'
+import axios from 'axios';
+import styles from './Product.module.css'
+import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
 
 const Product = () => {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+
+  const [product, setProduct] = useState({});
+
+  useEffect(()=>{
+    const getProducts = async () => {
+      try {
+        const res = await axios.get( `http://localhost:5555/api/products/find/${id}`);
+        setProduct(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProducts();
+  }, [id]);
+
+  
   return (
-    <div>Product</div>
+    <div>
+      <div className={styles.productBox}>
+        <div className={styles.imgBox}>
+          <img src={product.image} alt="Product image"/>
+        </div>
+        <div className={styles.contentBox}>
+          <div className={styles.title}>{product.title}</div>
+          <div className={styles.textBox}>
+            <div className={styles.name}>Description:</div>
+            <div className={styles.text}>{product.decription}</div>
+          </div>
+          <div className={styles.textBox}>
+            <div className={styles.price}>$ {product.price} / {product.measure}</div>
+          </div>
+          <div className="orderBox"></div>
+        </div>
+      </div>
+
+      
+      
+    </div>
   )
 }
 

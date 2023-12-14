@@ -15,13 +15,9 @@ const ProductSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        categories: [
-            {
-                categoryId: {
-                    type: String,
-                }
-            }
-        ],
+        categories: { 
+            type: Array 
+        },
         measure: {
             type: String,
             default: "pcs"

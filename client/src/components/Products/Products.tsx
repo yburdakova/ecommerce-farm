@@ -3,6 +3,7 @@ import styles from './Products.module.css'
 import { products, categories } from '../../data';
 import { useEffect, useState } from 'react'
 import { ProductItem } from '..';
+import axios from 'axios';
 
 
 interface ProductsProps {
@@ -12,37 +13,36 @@ interface ProductsProps {
 
 const Products = ({cat, sort}:ProductsProps) => {
   
-  const [productList, setProductList] = useState(products);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [categoryId, setCategoryId] = useState(0)
-
-  useEffect(() =>{
-    const category = categories.filter(category => category.title === cat)
-    setCategoryId(category[0].id)
-  },[cat])
+  const [productList, setProductList] = useState([]);
 
 
-  useEffect(() => {
-    console.log(`Category ID: ${categoryId}`);
-    if (categoryId) {
-      const filtered = productList.filter((item) => item.categories.some(category => Number(category.categoryId) === categoryId));
-      setFilteredProducts(filtered);
-      console.log(filtered);
-    }
-  }, [productList, categoryId]);
-
+  useEffect(()=>{
+    const getProducts = async () => {
+      try {
+        const res = await axios.get(
+          cat
+            ? `http://localhost:5555/api/products?category=${cat}`
+            : "http://localhost:5555/api/products"
+        );
+        setProductList(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProducts();
+  }, [cat]);
 
 useEffect(() => {
   if (sort === "newest") {
-    setFilteredProducts((prev) =>
+    setProductList((prev) =>
       [...prev].sort((a, b) => a.createdAt - b.createdAt)
     );
   } else if (sort === "asc") {
-    setFilteredProducts((prev) =>
+    setProductList((prev) =>
       [...prev].sort((a, b) => a.price - b.price)
     );
   } else {
-    setFilteredProducts((prev) =>
+    setProductList((prev) =>
       [...prev].sort((a, b) => b.price - a.price)
     );
   }
@@ -50,8 +50,11 @@ useEffect(() => {
 
   return (
     <div className={styles.productsContainer}>
-    {filteredProducts.map((item) => <ProductItem item={item} key={item._id} />)
-    }
+    {cat
+        ? productList.map((item) => <ProductItem item={item} key={item.id} />)
+        : productList
+            .slice(0, 9)
+            .map((item) => <ProductItem item={item} key={item.id} />)}
   </div>
   )
 }

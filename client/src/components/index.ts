@@ -4,6 +4,8 @@ import { Footer } from "./Footer/Footer";
 import { Categories } from "./Categories/Categories";
 import Products from "./Products/Products";
 import ProductItem from "./ProductItem/ProductItem";
+import SortBar from "./SortBar/SortBar";
+
 
 export {
   CategoryItem,
@@ -11,5 +13,6 @@ export {
   Footer,
   Categories,
   Products,
-  ProductItem
+  ProductItem,
+  SortBar
 }

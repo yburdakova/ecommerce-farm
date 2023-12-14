@@ -1,12 +1,11 @@
-import { Categories } from "../../components"
+import { Categories, Products } from "../../components"
 
 
 const Home = () => {
   return (
       <main>
         <Categories/>
-        <section className="slider"></section>
-        <section className="products"></section>
+        <Products cat="" sort=""/>
         <section className="newsletter"></section>
       </main>
   )

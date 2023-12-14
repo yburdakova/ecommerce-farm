@@ -42,7 +42,7 @@ export const categories = [
   },
   {
     id: 4,
-    title: "freeze",
+    title: "frozen",
     img: freeze
   },
   {
