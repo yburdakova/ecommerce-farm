@@ -1,11 +1,14 @@
 import axios from 'axios';
 import styles from './Product.module.css'
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 
 const Product = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
+  
+  const [quantity, setQuantity] = useState(1);
+  const [max, setMax] = useState(10)
 
   const [product, setProduct] = useState({});
 
@@ -21,7 +24,25 @@ const Product = () => {
     getProducts();
   }, [id]);
 
-  
+  const handleClickIncrease = () => {
+    setQuantity(quantity+1)
+  }
+
+  const handleClickDecrease = () => {
+    if(quantity > 0) {
+      setQuantity(quantity-1)
+    }
+  }
+
+  const handleInputChange = (event) => {
+    const inputValue = parseInt(event.target.value, 10);
+    if (!isNaN(inputValue)) {
+      setQuantity(Math.min(inputValue, max));
+    } else {
+      console.log("Invalid input. Please enter a valid number less than or equal to " + max);
+    }
+  };
+
   return (
     <div>
       <div className={styles.productBox}>
@@ -39,9 +60,9 @@ const Product = () => {
           </div>
           <div className={styles.orderBox}>
             <div className={styles.counterBox}>
-              <div className={styles.counterButton}>-</div>
-              <input type="text" value={1} />
-              <div className={styles.counterButton}>+</div>
+              <div className={styles.counterButton} onClick={handleClickDecrease}>-</div>
+              <input type="text" value={quantity} onChange={handleInputChange}/>
+              <div className={styles.counterButton} onClick={handleClickIncrease}>+</div>
             </div>
             <button>ADD TO CART</button>
           </div>
