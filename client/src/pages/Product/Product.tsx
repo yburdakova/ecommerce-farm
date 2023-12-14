@@ -3,14 +3,30 @@ import styles from './Product.module.css'
 import  { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 
+interface ProductData {
+  image: string;
+  title: string;
+  decription: string;
+  price: number;
+  measure: string;
+}
+
 const Product = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
+  const max = 10;
   
   const [quantity, setQuantity] = useState(1);
-  const [max, setMax] = useState(10)
+  
 
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState<ProductData>({
+    image: '',
+    title: '',
+    decription: '',
+    price: 0,
+    measure: '',
+  });
+
 
   useEffect(()=>{
     const getProducts = async () => {
@@ -25,7 +41,10 @@ const Product = () => {
   }, [id]);
 
   const handleClickIncrease = () => {
-    setQuantity(quantity+1)
+    if(quantity < max){
+      setQuantity(quantity+1)
+    }
+    
   }
 
   const handleClickDecrease = () => {
@@ -34,7 +53,7 @@ const Product = () => {
     }
   }
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = parseInt(event.target.value, 10);
     if (!isNaN(inputValue)) {
       setQuantity(Math.min(inputValue, max));

@@ -1,6 +1,11 @@
 import styles from './SortBar.module.css'
 
-const SortBar = ({cat, onInputChange}) => {
+interface SortBarProps {
+  cat: string;
+  onInputChange: (value: string) => void;
+}
+
+const SortBar: React.FC<SortBarProps> = ({cat, onInputChange}) => {
 
   return (
     <div className={styles.service}>
@@ -9,8 +14,8 @@ const SortBar = ({cat, onInputChange}) => {
       <div className={styles.sortTitle}>Sort Products:</div>
       <select onChange={(e) => onInputChange(e.target.value)}>
         <option value="newest">Newest</option>
-        <option value="asc">Price (asc)</option>
-        <option value="desc">Price (desc)</option>
+        <option value="asc">Low price to high</option>
+        <option value="desc">High price to low</option>
       </select>
     </div>
   </div>

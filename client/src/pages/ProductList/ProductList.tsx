@@ -10,7 +10,7 @@ const ProductList = () => {
   const location = useLocation();
   const cat = location.pathname.split("/")[2];
 
-  const handleInputChangeInB = (sort) => {
+  const handleInputChangeInB = (sort:string) => {
     console.log('Value from Component B:', sort);
     setSort(sort)
   };
@@ -23,7 +23,7 @@ const ProductList = () => {
           <Products cat={cat} sort={sort} />
         </div>
     </div>
-   
+
   )
 }
 

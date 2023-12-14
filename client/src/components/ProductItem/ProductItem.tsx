@@ -1,10 +1,17 @@
-import React from 'react'
 import styles from './ProductItem.module.css'
 import { cart } from '../../assets'
 import { Link } from 'react-router-dom'
 
+interface ProductItemProps{
+  item: {
+    _id: string;
+    image: string;
+    title: string;
+    price: number;
+  }
+}
 
-const ProductItem = ({ item }) => {
+const ProductItem = ({ item }: ProductItemProps) => {
   return (
     <div className={styles.container}>
       <Link className={styles.imgBox} to={`/product/${item._id}`}>

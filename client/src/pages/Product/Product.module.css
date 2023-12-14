@@ -58,6 +58,7 @@
   font-size: 2.2rem;
   margin: 5px;
   cursor: pointer;
+  user-select: none;
 }
 .counterBox input{
   font-size: 1.8rem;
