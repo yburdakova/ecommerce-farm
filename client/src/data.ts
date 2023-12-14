@@ -51,12 +51,12 @@ export const categories = [
     img: meat
   },
   {
-    id: 5,
+    id: 6,
     title: "butter",
     img: meat
   },
   {
-    id: 5,
+    id: 7,
     title: "cream",
     img: meat
   }
@@ -65,12 +65,15 @@ export const categories = [
 export const products = [
   {
       _id: 1,
-      title: "Cheese cook",
+      title: "Cheese cook 170",
       decription: "ovingly crafted on our local farm, our cheese boasts a unique flavor and aroma that you won't find in ordinary cheeses. Whether you're slicing it for snacks or melting it for delectable sandwiches, our artisanal cheese promises an unforgettable experience, brimming with the taste and traditions of authentic farm-to-table cuisine.",
       image: "https://res.cloudinary.com/dtkoyzh0l/image/upload/v1697924917/Farm/46_vnu6gl.jpg",
       categories: [
         {
           categoryId: 3
+        },
+        {
+          categoryId: 2
         }
       ],
       measure: "pcs",
@@ -81,7 +84,7 @@ export const products = [
   },
   {
     _id: 2,
-    title: "Cheese beez",
+    title: "Cheese beez 200",
     decription: "ovingly crafted on our local farm, our cheese boasts a unique flavor and aroma that you won't find in ordinary cheeses. Whether you're slicing it for snacks or melting it for delectable sandwiches, our artisanal cheese promises an unforgettable experience, brimming with the taste and traditions of authentic farm-to-table cuisine.",
     image: "https://res.cloudinary.com/dtkoyzh0l/image/upload/v1697924917/Farm/46_vnu6gl.jpg",
     categories: [
@@ -97,7 +100,7 @@ export const products = [
   },
   {
     _id: 3,
-    title: "Bread beez",
+    title: "Bread beez 220",
     decription: "ovingly crafted on our local farm, our cheese boasts a unique flavor and aroma that you won't find in ordinary cheeses. Whether you're slicing it for snacks or melting it for delectable sandwiches, our artisanal cheese promises an unforgettable experience, brimming with the taste and traditions of authentic farm-to-table cuisine.",
     image: "https://res.cloudinary.com/dtkoyzh0l/image/upload/v1697924917/Farm/33_ibschi.jpg",
     categories: [
@@ -113,7 +116,7 @@ export const products = [
   },
   {
     _id: 4,
-    title: "Bread beez",
+    title: "Bread beez 250",
     decription: "ovingly crafted on our local farm, our cheese boasts a unique flavor and aroma that you won't find in ordinary cheeses. Whether you're slicing it for snacks or melting it for delectable sandwiches, our artisanal cheese promises an unforgettable experience, brimming with the taste and traditions of authentic farm-to-table cuisine.",
     image: "https://res.cloudinary.com/dtkoyzh0l/image/upload/v1697924917/Farm/33_ibschi.jpg",
     categories: [
@@ -129,7 +132,7 @@ export const products = [
   },
   {
     _id: 5,
-    title: "Bread beez",
+    title: "Bread beez 140",
     decription: "ovingly crafted on our local farm, our cheese boasts a unique flavor and aroma that you won't find in ordinary cheeses. Whether you're slicing it for snacks or melting it for delectable sandwiches, our artisanal cheese promises an unforgettable experience, brimming with the taste and traditions of authentic farm-to-table cuisine.",
     image: "https://res.cloudinary.com/dtkoyzh0l/image/upload/v1697924917/Farm/33_ibschi.jpg",
     categories: [
@@ -183,6 +186,12 @@ export const products = [
     categories: [
       {
         categoryId: 1
+      },
+      {
+        categoryId: 3
+      },
+      {
+        categoryId: 7
       }
     ],
     measure: "pcs",

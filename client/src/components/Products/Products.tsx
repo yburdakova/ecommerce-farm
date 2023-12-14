@@ -1,7 +1,7 @@
 
 import styles from './Products.module.css'
-import { products } from '../../data';
-import React, { useEffect, useState } from 'react'
+import { products, categories } from '../../data';
+import { useEffect, useState } from 'react'
 import { ProductItem } from '..';
 
 
@@ -11,16 +11,46 @@ interface ProductsProps {
 }
 
 const Products = ({cat, sort}:ProductsProps) => {
+  
+  const [productList, setProductList] = useState(products);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [categoryId, setCategoryId] = useState(0)
 
-  const [productList, setProductList] = useState([]);
+  useEffect(() =>{
+    const category = categories.filter(category => category.title === cat)
+    setCategoryId(category[0].id)
+  },[cat])
 
-useEffect(()=> {
-  setProductList(products)
-}, [])
+
+  useEffect(() => {
+    console.log(`Category ID: ${categoryId}`);
+    if (categoryId) {
+      const filtered = productList.filter((item) => item.categories.some(category => Number(category.categoryId) === categoryId));
+      setFilteredProducts(filtered);
+      console.log(filtered);
+    }
+  }, [productList, categoryId]);
+
+
+useEffect(() => {
+  if (sort === "newest") {
+    setFilteredProducts((prev) =>
+      [...prev].sort((a, b) => a.createdAt - b.createdAt)
+    );
+  } else if (sort === "asc") {
+    setFilteredProducts((prev) =>
+      [...prev].sort((a, b) => a.price - b.price)
+    );
+  } else {
+    setFilteredProducts((prev) =>
+      [...prev].sort((a, b) => b.price - a.price)
+    );
+  }
+}, [sort]);
 
   return (
     <div className={styles.productsContainer}>
-    {productList.map((item) => <ProductItem item={item} key={item._id} />)
+    {filteredProducts.map((item) => <ProductItem item={item} key={item._id} />)
     }
   </div>
   )
