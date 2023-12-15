@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import styles from './Cart.module.css'
 import { CartItem } from '..';
+import { RootState } from '@reduxjs/toolkit/query';
 
 const Cart = () => {
 
@@ -35,7 +36,7 @@ const Cart = () => {
             <span >Discount: </span>
             <span className={styles.bold}>$ 0</span>
           </div>
-          <div className={styles.totla}>
+          <div className={styles.totlal}>
             <span >Total: </span>
             <span className={styles.bold}>$ 0</span>
           </div>
