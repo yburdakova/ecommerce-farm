@@ -23,6 +23,16 @@
   color: #fff;
   font-size: 14px;
   font-weight: 600;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+      scale: 0;
+  }
+  to {
+      scale: 1;
+  }
 }
 
 @media (prefers-color-scheme: light) {

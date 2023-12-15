@@ -3,10 +3,13 @@ import  { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import { ProductData } from '../../constants/types';
 import { publicRequest } from '../../middleware/requestMethods';
+import { addProduct } from '../../redux/cartSlice';
+import { useDispatch } from 'react-redux';
 
 const Product = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
+  const dispatch = useDispatch();
   const max = 10;
   
   const [quantity, setQuantity] = useState(1);
@@ -47,6 +50,9 @@ const Product = () => {
   }
 
   const handleClickCartButton = () => {
+    dispatch(
+      addProduct({ ...product, quantity })
+    )
     
   }
 

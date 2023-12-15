@@ -1,0 +1,24 @@
+.cartContainer{
+  width: 100%;
+}
+.cartData{
+  display: flex;
+  width: 100%;
+}
+.cartItems{
+  flex-grow: 1;
+}
+
+.orderData{
+  width: 370px;
+  height:fit-content;
+  border: 2px solid #f1ebeb;
+  margin: 20px;
+  margin-left: 40px;
+  padding: 20px;
+  border-radius: 30px
+
+}
+.bold{
+  font-weight: 600;
+}

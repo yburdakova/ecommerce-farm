@@ -6,6 +6,7 @@ import  meat from  './cat_items/meat.svg'
 import  freeze from  './cat_items/freeze.svg'
 import  cheese from  './cat_items/cheese.svg'
 import  cart from './cat_items/cart.svg'
+import trash from './icons/trash.svg'
 
 export {
   bakery,
@@ -13,5 +14,6 @@ export {
   meat,
   freeze,
   cheese,
-  cart
+  cart,
+  trash
 }

@@ -2,18 +2,18 @@ import { useSelector } from 'react-redux'
 import { CartBox } from '..'
 import styles from './Header.module.css'
 import { RootState } from '../../redux/store';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
 
-  const quantity = useSelector( ( state: RootState ) => state.cart.quantity);
-  console.log(quantity);
-  
+  const quantity = useSelector( ( state: RootState ) => state.cart.quantity);  
 
   return (
     <header>
-        <div className={styles.logo}>LOGO</div>
+      <Link to={"/"}> <div className={styles.logo}>LOGO</div></Link>
         <nav className="menu">MENU</nav>
-        <CartBox quantity={quantity}/>
+        <Link to={"/cart"}><CartBox quantity={quantity}/></Link>
+        
         <div className="user">USER</div>
         <div className="user">LANG</div>
       </header>
