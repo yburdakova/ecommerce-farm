@@ -19,7 +19,7 @@ const Cart = () => {
           <div className={styles.cartData}>
         <div className={styles.cartItems}>
           {products && products.map( (item, index) =>
-            <CartItem item={item} key={`${index}-${item}`}/>
+            <CartItem item={item} key={item._id}/>
           )}
         </div>
         <div className={styles.orderData}>
@@ -36,7 +36,7 @@ const Cart = () => {
             <span >Discount: </span>
             <span className={styles.bold}>$ 0</span>
           </div>
-          <div className={styles.totlal}>
+          <div className={styles.totla}>
             <span >Total: </span>
             <span className={styles.bold}>$ 0</span>
           </div>
