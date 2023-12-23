@@ -39,3 +39,10 @@ export interface CartState {
   quantity: number;
   totalPrice: number;
 }
+export interface CartItemData extends ProductData {
+  quantity: number;
+}
+
+export interface CartItemProps {
+  item: CartItemData;
+}

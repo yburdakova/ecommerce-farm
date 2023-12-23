@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
 import styles from './Cart.module.css'
 import { CartItem } from '..';
-import { RootState } from '@reduxjs/toolkit/query';
+import { RootState } from '../../redux/store';
 
 const Cart = () => {
 
-  const {products, quantity, totalPrice} = useSelector( ( state: RootState ) => state.cart);
+  const { products, quantity, totalPrice } = useSelector((state: RootState) => state.cart);
 
   console.log(products);
   
@@ -18,9 +18,9 @@ const Cart = () => {
         : <><h3 className="">You choosed {quantity} products:</h3>
           <div className={styles.cartData}>
         <div className={styles.cartItems}>
-          {products && products.map( (item, index) =>
-            <CartItem item={item} key={item._id}/>
-          )}
+        {products && products.map((product) =>
+          <CartItem item={{ ...product, quantity: 1 }} key={product._id}/>
+        )}
         </div>
         <div className={styles.orderData}>
           <div className={styles.orderTitle}>Order summary</div>

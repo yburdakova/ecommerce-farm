@@ -1,15 +1,7 @@
 import { useState } from 'react';
 import { trash } from '../../assets';
 import styles from './CartItem.module.css';
-import { ProductData } from '../../constants/types';
-
-interface CartItemData extends ProductData {
-  quantity: number;
-}
-
-interface CartItemProps {
-  item: CartItemData;
-}
+import { CartItemProps } from '../../constants/types';
 
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
   const [quantity, setQuantity] = useState(item.quantity);
