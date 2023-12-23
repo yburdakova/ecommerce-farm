@@ -35,7 +35,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
       <div className={styles.productInfo}>
         <div className={styles.productTitle}>{item.title}</div>
         <div className={styles.id}>id: {item._id}</div>
-        <div className={styles.measure}>Price is for {item.measure}</div>
+        <div className={styles.measure}>Price: ${item.price} per {item.measure}</div>
       </div>
       <div className={styles.priceBox}>
         <div className={styles.counterBox}>
