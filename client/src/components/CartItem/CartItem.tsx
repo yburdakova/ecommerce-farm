@@ -3,7 +3,7 @@ import { trash } from '../../assets';
 import styles from './CartItem.module.css';
 import { CartItemProps } from '../../constants/types';
 import { useDispatch } from 'react-redux';
-import { updateProductQuantity } from '../../redux/cartSlice';
+import { deleteProduct, updateProductQuantity } from '../../redux/cartSlice';
 
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
   const dispatch = useDispatch();
@@ -27,6 +27,10 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
     }
   };
 
+  const handleDelete = () => {
+    dispatch(deleteProduct(({ productId: item._id })));
+  };
+
   return (
     <div className={styles.cartItemBox}>
       <div className={styles.imgBox}>
@@ -47,7 +51,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
           <div className={styles.price}>${item.price * quantity}</div>
         }
       </div>
-      <div className={styles.iconBox}>
+      <div className={styles.iconBox}  onClick={handleDelete}>
         <img src={trash} alt="trash icon" />
       </div>
     </div>

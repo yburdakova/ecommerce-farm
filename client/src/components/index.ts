@@ -6,6 +6,7 @@ import Products from "./Products/Products";
 import ProductItem from "./ProductItem/ProductItem";
 import SortBar from "./SortBar/SortBar";
 import CartBox from "./CartBox/CartBox";
+import Discount from "./Discount/Discount";
 
 
 
@@ -17,5 +18,6 @@ export {
   Products,
   ProductItem,
   SortBar,
-  CartBox
+  CartBox,
+  Discount
 }

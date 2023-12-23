@@ -39,6 +39,8 @@ export interface CartState {
   products: ProductData[];
   quantity: number;
   totalPrice: number;
+  deliveryPrice: number,
+  discount: number,
 }
 
 
