@@ -27,6 +27,7 @@ export interface ProductData {
   inStock?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
+  quantity?: number;
 }
 
 export interface SortBarProps {
@@ -39,10 +40,8 @@ export interface CartState {
   quantity: number;
   totalPrice: number;
 }
-export interface CartItemData extends ProductData {
-  quantity: number;
-}
+
 
 export interface CartItemProps {
-  item: CartItemData;
+  item: ProductData;
 }

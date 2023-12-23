@@ -19,7 +19,7 @@ const Cart = () => {
           <div className={styles.cartData}>
         <div className={styles.cartItems}>
         {products && products.map((product) =>
-          <CartItem item={{ ...product, quantity: 1 }} key={product._id}/>
+          <CartItem item={product} key={product._id} />
         )}
         </div>
         <div className={styles.orderData}>
