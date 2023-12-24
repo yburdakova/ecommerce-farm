@@ -2,6 +2,7 @@ import { SetStateAction, useState } from 'react';
 import { addCode } from '../../redux/cartSlice';
 import { useDispatch } from 'react-redux';
 import { saleCodes } from '../../constants/data';
+import styles from './Discount.module.css';
 
 const Discount = () => {
   const [couponCode, setCouponCode] = useState('');
@@ -24,10 +25,11 @@ const Discount = () => {
   }
 
   return (
-    <div>
-      <form>
-        <label htmlFor="couponCode">Add coupon code: </label>
+    <div className={styles.formDiscount}>
+      <form className={styles.containerDiscount}>
+        <label htmlFor="couponCode">Discount code: </label>
         <input 
+          className={styles.inputDiscount}
           type="text" 
           id="couponCode"
           value={couponCode}

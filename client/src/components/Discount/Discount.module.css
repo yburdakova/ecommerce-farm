@@ -1,0 +1,16 @@
+.containerDiscount{
+  margin: 20px 0;
+}
+
+.formDiscount{
+  display: flex;
+  align-items: center;
+}
+
+.inputDiscount {
+  padding: 0.3em 1.2em;
+  font-size: 1em;
+  margin: 0 10px;
+  border-radius: 8px;
+  text-transform: uppercase;
+}
