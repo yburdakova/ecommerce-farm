@@ -6,7 +6,7 @@ import { DeliverySelect, Discount } from '../../components';
 
 const Cart = () => {
 
-  const { products, quantity, totalPrice, discount } = useSelector((state: RootState) => state.cart);
+  const { products, quantity, totalPrice, discount, deliveryPrice } = useSelector((state: RootState) => state.cart);
 
   console.log(products);
   
@@ -34,7 +34,7 @@ const Cart = () => {
               </div>
               <div className={styles.orderPoint}>
                 <span >Estimated delivery: </span>
-                <span className={styles.bold}>$ 0</span>
+                <span className={styles.bold}>$ {deliveryPrice}</span>
               </div>
               <div className={styles.orderPoint}>
                 <span >Discount: </span>
@@ -42,7 +42,7 @@ const Cart = () => {
               </div>
               <div className={styles.total}>
                 <span >Total: </span>
-                <span className={styles.bold}>$ 0</span>
+                <span className={styles.bold}>$ {totalPrice}</span>
               </div>
               <button>Checkout now</button>
             </div>
