@@ -1,11 +1,15 @@
 export const deliveryData =  [
   {
-    city: 'New York',
-    price: 40
+    city: 'no delivery',
+    price: 0
   },
   {
     city: 'Charlotte',
     price: 10
+  },
+  {
+    city: 'New York',
+    price: 40
   },
 ]
 

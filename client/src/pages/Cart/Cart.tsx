@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import styles from './Cart.module.css'
 import { CartItem } from '..';
 import { RootState } from '../../redux/store';
-import { Discount } from '../../components';
+import { DeliverySelect, Discount } from '../../components';
 
 const Cart = () => {
 
@@ -17,6 +17,7 @@ const Cart = () => {
       {!products.length 
         ? <h3 className="">Your cart is empty</h3>
         : <>
+            <DeliverySelect/>
             <Discount/>
             <h3 className="">You choosed {quantity} products:</h3>
               <div className={styles.cartData}>
