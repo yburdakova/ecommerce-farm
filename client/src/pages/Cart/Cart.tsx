@@ -2,10 +2,11 @@ import { useSelector } from 'react-redux';
 import styles from './Cart.module.css'
 import { CartItem } from '..';
 import { RootState } from '../../redux/store';
+import { Discount } from '../../components';
 
 const Cart = () => {
 
-  const { products, quantity, totalPrice } = useSelector((state: RootState) => state.cart);
+  const { products, quantity, totalPrice, discount } = useSelector((state: RootState) => state.cart);
 
   console.log(products);
   
@@ -16,6 +17,7 @@ const Cart = () => {
       {!products.length 
         ? <h3 className="">Your cart is empty</h3>
         : <>
+            <Discount/>
             <h3 className="">You choosed {quantity} products:</h3>
               <div className={styles.cartData}>
             <div className={styles.cartItems}>
@@ -35,7 +37,7 @@ const Cart = () => {
               </div>
               <div className={styles.orderPoint}>
                 <span >Discount: </span>
-                <span className={styles.bold}>$ 0</span>
+                <span className={styles.bold}>$ {discount}</span>
               </div>
               <div className={styles.total}>
                 <span >Total: </span>
