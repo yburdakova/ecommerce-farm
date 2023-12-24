@@ -1,5 +1,8 @@
 .containerDiscount{
-  margin: 20px 0;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .formDiscount{
@@ -8,9 +11,17 @@
 }
 
 .inputDiscount {
-  padding: 0.3em 1.2em;
+  padding: 0.3em 0.4em;
   font-size: 1em;
   margin: 0 10px;
   border-radius: 8px;
   text-transform: uppercase;
+}
+
+.invalidCode{
+  position: absolute;
+  font-size: 14px;
+  color: #FD0505;
+  bottom: 0;
+  left: 122px
 }

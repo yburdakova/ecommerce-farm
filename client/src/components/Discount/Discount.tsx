@@ -6,6 +6,7 @@ import styles from './Discount.module.css';
 
 const Discount = () => {
   const [couponCode, setCouponCode] = useState('');
+  const [isValidCode, setIsValidCode] = useState(true);
   const dispatch = useDispatch();
 
   const getDiscountFromCode = (inputCode: string) => {
@@ -15,28 +16,35 @@ const Discount = () => {
 
   const handleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
     setCouponCode(e.target.value);
+    setIsValidCode(true); // Сбросить предупреждение о неверном коде при каждом изменении
   };
 
   const handleClickApplyCode = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const discountValue = getDiscountFromCode(couponCode.toUpperCase());
-    dispatch(addCode({ discount: discountValue }));
+    if (discountValue === 0) {
+      setIsValidCode(false); // Неверный код скидки
+    } else {
+      dispatch(addCode({ discount: discountValue }));
+      setIsValidCode(true);
+    }
     setCouponCode('');
   }
 
   return (
-    <div className={styles.formDiscount}>
-      <form className={styles.containerDiscount}>
+    <div className={styles.containerDiscount}>
+      <form className={styles.formDiscount}>
         <label htmlFor="couponCode">Discount code: </label>
         <input 
           className={styles.inputDiscount}
           type="text" 
           id="couponCode"
           value={couponCode}
-          onChange={handleChange} 
+          onChange={handleChange}
         />
         <button type="submit" onClick={handleClickApplyCode}>Apply discount</button>
       </form>
+      {!isValidCode && <div className={styles.invalidCode}>Invalid code</div>}
     </div>
   )
 }
