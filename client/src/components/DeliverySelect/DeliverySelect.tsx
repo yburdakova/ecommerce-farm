@@ -2,6 +2,7 @@ import  { useState } from 'react'
 import { deliveryData } from '../../constants/data'
 import { useDispatch } from 'react-redux';
 import { updateDeliveryPrice } from '../../redux/cartSlice';
+import styles from './DeliverySelect.module.css';
 
 const DeliverySelect = () => {
 
@@ -17,14 +18,14 @@ const DeliverySelect = () => {
   }
   
   return (
-    <div>
-    Select a city for delivery
-    <select name="delivery" id="delivery" value={selectedCity} onChange={handleChange}>
-      {deliverySettings.map((deliveryItem, index) => (
-        <option key={`${index}-${deliveryItem}`} value={deliveryItem.city}>{deliveryItem.city}</option>
-      ))}
-    </select>
-  </div>
+    <div className={styles.container}>
+      Select a city for delivery
+      <select name="delivery" id="delivery" value={selectedCity} onChange={handleChange} className={styles.select}>
+        {deliverySettings.map((deliveryItem, index) => (
+          <option key={`${index}-${deliveryItem}`} value={deliveryItem.city}>{deliveryItem.city}</option>
+        ))}
+      </select>
+    </div>
   )
 }
 
