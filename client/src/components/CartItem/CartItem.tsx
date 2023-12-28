@@ -44,7 +44,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
       <div className={styles.priceBox}>
         <div className={styles.counterBox}>
           <div className={styles.counterButton} onClick={handleClickDecrease}>-</div>
-          <input type="text" value={quantity} />
+          <input type="text" value={quantity} readOnly/>
           <div className={styles.counterButton} onClick={handleClickIncrease}>+</div>
         </div>
         {quantity&&

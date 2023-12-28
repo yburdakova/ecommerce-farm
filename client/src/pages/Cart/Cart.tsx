@@ -3,13 +3,25 @@ import styles from './Cart.module.css'
 import { CartItem } from '..';
 import { RootState } from '../../redux/store';
 import { DeliverySelect, Discount } from '../../components';
+import StripeCheckout from 'react-stripe-checkout';
+import { useEffect, useState } from 'react';
+
+const KEY = import.meta.env.VITE_STRIPE;
 
 const Cart = () => {
 
   const { products, quantity, totalPrice, discount, deliveryPrice } = useSelector((state: RootState) => state.cart);
-
-  console.log(products);
+  const [stripeToken, setStripeToken] = useState(null);
   
+  const onToken = (token) => {
+    setStripeToken(token)
+  }
+  
+  useEffect(() => {
+    const makeRequest = async () => {
+      
+    }
+  }, [stripeToken])
 
   return (
     <section className={styles.cartContainer}>
@@ -44,7 +56,15 @@ const Cart = () => {
                 <span >Total: </span>
                 <span className={styles.bold}>$ {totalPrice}</span>
               </div>
-              <button>Checkout now</button>
+                  <StripeCheckout
+                    name='Farm store'
+                    billingAddress
+                    shippingAddress
+                    description={`Your total is ${totalPrice}`}
+                    amount={totalPrice*100}
+                    token={onToken}
+                    stripeKey={KEY}
+                  />
             </div>
           </div>
         </>

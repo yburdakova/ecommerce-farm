@@ -15,8 +15,7 @@ export const Header = () => {
         <div className="user">USER</div>
         <div className="user">LANG</div>
         <Link to={"/cart"}><CartBox quantity={quantity}/></Link>
-  
-       
+
       </header>
   )
 }
