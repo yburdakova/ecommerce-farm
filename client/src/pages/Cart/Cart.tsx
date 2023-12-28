@@ -5,6 +5,8 @@ import { RootState } from '../../redux/store';
 import { DeliverySelect, Discount } from '../../components';
 import StripeCheckout from 'react-stripe-checkout';
 import { useEffect, useState } from 'react';
+import { userRequest } from '../../middleware/requestMethods';
+import { useNavigate } from 'react-router-dom';
 
 const KEY = import.meta.env.VITE_STRIPE;
 
@@ -12,6 +14,7 @@ const Cart = () => {
 
   const { products, quantity, totalPrice, discount, deliveryPrice } = useSelector((state: RootState) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
+  const navigate = useNavigate();
   
   const onToken = (token) => {
     setStripeToken(token)
@@ -19,9 +22,20 @@ const Cart = () => {
   
   useEffect(() => {
     const makeRequest = async () => {
-      
-    }
-  }, [stripeToken])
+      if (stripeToken) {
+        try {
+          const response = await userRequest.post("/checkout/payment", {
+            tokenId: stripeToken.id,
+            amount: totalPrice * 100,
+          });
+          navigate("/success", {data: response.data}); 
+        } catch (error) {
+          console.log(error);
+        }
+      }
+  }
+  stripeToken && makeRequest();
+  }, [stripeToken, totalPrice, navigate])
 
   return (
     <section className={styles.cartContainer}>

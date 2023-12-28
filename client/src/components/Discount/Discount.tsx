@@ -16,14 +16,14 @@ const Discount = () => {
 
   const handleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
     setCouponCode(e.target.value);
-    setIsValidCode(true); // Сбросить предупреждение о неверном коде при каждом изменении
+    setIsValidCode(true); 
   };
 
   const handleClickApplyCode = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const discountValue = getDiscountFromCode(couponCode.toUpperCase());
     if (discountValue === 0) {
-      setIsValidCode(false); // Неверный код скидки
+      setIsValidCode(false); 
     } else {
       dispatch(addCode({ discount: discountValue }));
       setIsValidCode(true);
