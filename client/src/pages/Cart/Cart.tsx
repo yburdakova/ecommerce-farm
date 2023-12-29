@@ -7,18 +7,19 @@ import StripeCheckout from 'react-stripe-checkout';
 import { useEffect, useState } from 'react';
 import { userRequest } from '../../middleware/requestMethods';
 import { useNavigate } from 'react-router-dom';
+import { logo } from '../../assets';
 
 const KEY = import.meta.env.VITE_STRIPE;
 
 const Cart = () => {
 
   const { products, quantity, totalPrice, discount, deliveryPrice } = useSelector((state: RootState) => state.cart);
-  const [stripeToken, setStripeToken] = useState(null);
+  const [stripeToken, setStripeToken] = useState<{ id: string } | null>(null);
   const navigate = useNavigate();
   
-  const onToken = (token) => {
-    setStripeToken(token)
-  }
+  const onToken = (token: { id: string }) => {
+    setStripeToken(token);
+  };
   
   useEffect(() => {
     const makeRequest = async () => {
@@ -28,7 +29,8 @@ const Cart = () => {
             tokenId: stripeToken.id,
             amount: totalPrice * 100,
           });
-          navigate("/success", {data: response.data}); 
+          localStorage.setItem('paymentResponse', JSON.stringify(response.data));
+          navigate("/success"); 
         } catch (error) {
           console.log(error);
         }
@@ -72,12 +74,14 @@ const Cart = () => {
               </div>
                   <StripeCheckout
                     name='Farm store'
+                    image={logo}
                     billingAddress
                     shippingAddress
                     description={`Your total is ${totalPrice}`}
                     amount={totalPrice*100}
                     token={onToken}
                     stripeKey={KEY}
+                    label='CHECKOUT NOW'
                   />
             </div>
           </div>

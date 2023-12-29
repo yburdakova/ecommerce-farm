@@ -1,6 +1,9 @@
-import React from 'react'
+
 
 const Success = () => {
+  const paymentResponse = JSON.parse(localStorage.getItem('paymentResponse'));
+  console.log(paymentResponse);
+  
   return (
     <div>SUCCESS PAYMENT</div>
   )
