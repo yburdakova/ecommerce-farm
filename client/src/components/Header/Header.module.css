@@ -15,3 +15,10 @@
   display: flex;
   gap: 6px;
 }
+.logoutBtn{
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+.logoutBtn:hover{
+  color: var(--text-accent);
+}

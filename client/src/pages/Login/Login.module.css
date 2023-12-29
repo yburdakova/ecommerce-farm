@@ -19,11 +19,12 @@ input{
 
 }
 
-button {
+.logButton {
   margin-top: 20px;
   margin-bottom: 40px;
+
 }
-button:disabled{
+.logButton:disabled{
   cursor: not-allowed;
 }
 .error{

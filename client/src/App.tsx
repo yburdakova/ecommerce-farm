@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
-import { Cart, Home, Login, Product, ProductList, Register, Success } from './pages'
+import { Account, Cart, Home, Login, Product, ProductList, Register, Success } from './pages'
 import { Footer, Header } from './components';
 import { useSelector } from 'react-redux';
 import { RootState } from './redux/store';
@@ -23,6 +23,7 @@ function App() {
           <Route path="/product/:id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/success" element={<Success />} />
+          <Route path="/user" element={<Account />} />
         </Routes>
       </main>
       <Footer/>

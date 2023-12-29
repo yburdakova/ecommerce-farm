@@ -35,7 +35,7 @@ const handleClickLogin = (e: { preventDefault: () => void; }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={handleClickLogin} disabled={isFetching}>LOGIN</button>
+        <button className={styles.logButton} onClick={handleClickLogin} disabled={isFetching}>LOGIN</button>
         {error && <div className={styles.error}>Something went wrong...</div>}
       </form>
       <Link to="/recovery" className={styles.p}>Do not remember the password</Link>

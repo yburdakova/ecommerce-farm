@@ -16,7 +16,7 @@ export const Header = () => {
   const handleClickLogout = () => {
     dispatch(loginFinish());
     dispatch(cleanCart()); 
-    
+
   }
 
 
@@ -31,7 +31,7 @@ export const Header = () => {
       {user
         ? <div className={styles.userBlock}>
             <Link to={"/user"}>USER</Link>/
-            <div onClick={handleClickLogout}>LOG OUT</div>
+            <div onClick={handleClickLogout} className={styles.logoutBtn}>LOG OUT</div>
           </div>
         : <Link to={"/login"}>LOGIN</Link>
       }
