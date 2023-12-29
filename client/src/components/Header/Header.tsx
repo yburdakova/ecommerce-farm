@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { CartBox } from '..'
 import styles from './Header.module.css'
 import { RootState } from '../../redux/store';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { logo } from '../../assets';
 import { loginFinish } from '../../redux/userRedux';
 import { cleanCart } from '../../redux/cartRedux';
@@ -12,11 +12,12 @@ export const Header = () => {
   const quantity = useSelector( ( state: RootState ) => state.cart.quantity);  
   const user = useSelector((state: RootState) => state.user.currentUser);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   
   const handleClickLogout = () => {
     dispatch(loginFinish());
     dispatch(cleanCart()); 
-
+    navigate('/');
   }
 
 
