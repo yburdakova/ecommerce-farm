@@ -43,6 +43,32 @@ export interface CartState {
   discount: number,
 }
 
+interface UserData {
+    username: {
+        type: string,
+        required: true,
+        unique: true
+    },
+    email:{
+        type: string,
+        required: true,
+        unique: true
+    },
+    password:{
+        type: string,
+        required: true
+    },
+    isAdmin: {
+        type: boolean,
+        default: false
+    }
+}
+
+export interface UserState {
+  currentUser: UserData;
+  isFetching: boolean;
+  error: boolean
+}
 
 export interface CartItemProps {
   item: ProductData;
