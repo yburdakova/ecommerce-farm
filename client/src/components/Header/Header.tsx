@@ -8,6 +8,7 @@ import { logo } from '../../assets';
 export const Header = () => {
 
   const quantity = useSelector( ( state: RootState ) => state.cart.quantity);  
+  const user = useSelector((state: RootState) => state.user.currentUser);
 
   return (
     <header className={styles.container}>
@@ -17,7 +18,10 @@ export const Header = () => {
         </div>
       </Link>
       <nav className="menu">MENU</nav>
-      <Link to={"/login"}>LOGIN</Link>
+      {user
+        ? <Link to={"/user"}>USER</Link>
+        : <Link to={"/login"}>LOGIN</Link>
+      }
       <div className="user">LANG</div>
       <Link to={"/cart"}><CartBox quantity={quantity}/></Link>
     </header>

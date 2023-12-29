@@ -3,10 +3,12 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { Cart, Home, Login, Product, ProductList, Register, Success } from './pages'
 import { Footer, Header } from './components';
+import { useSelector } from 'react-redux';
+import { RootState } from './redux/store';
 
 function App() {
   
-  const user = false;
+  const user = useSelector((state: RootState) => state.user.currentUser);
 
   return (
     <BrowserRouter>

@@ -10,6 +10,7 @@
   flex-direction: column;
   gap: 10px;
   width: 250px;
+  position: relative;
 }
 
 input{
@@ -20,8 +21,17 @@ input{
 
 button {
   margin-top: 20px;
+  margin-bottom: 40px;
 }
+button:disabled{
+  cursor: not-allowed;
+}
+.error{
+  color: red;
+  position: absolute;
+  bottom: 0;
 
+}
 .p{
   margin-top: 20px;
 }

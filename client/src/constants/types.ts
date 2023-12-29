@@ -44,12 +44,13 @@ export interface CartState {
 }
 
 export interface UserData {
-  _id: string,
-  username: string,
+  _id?: string,
+  username?: string,
+  email: string,
   password: string,
-  isAdmin: boolean,
-  createdAt: Date,
-  updatedAt:Date,
+  isAdmin?: boolean,
+  createdAt?: Date,
+  updatedAt?:Date,
 }
 
 export interface UserState {
