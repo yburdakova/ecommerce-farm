@@ -60,7 +60,15 @@ const cartSlice = createSlice({
       const productsTotal = state.products.reduce((total, product) => total + product.price * (product.quantity ? product.quantity : 0), 0);
       const discountAmount = productsTotal * (state.discount / 100);
       state.totalPrice = productsTotal + state.deliveryPrice - discountAmount;
-    }
+    },
+
+    cleanCart: (state) => {
+      state.products = [];
+      state.quantity = 0;
+      state.deliveryPrice = 0;
+      state.discount = 0;
+      state.totalPrice = 0;
+    },
   }
 });
 
@@ -69,7 +77,8 @@ export const {
   updateProductQuantity, 
   deleteProduct, 
   addCode, 
-  updateDeliveryPrice 
+  updateDeliveryPrice,
+  cleanCart 
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

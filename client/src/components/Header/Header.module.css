@@ -11,3 +11,7 @@
   overflow: hidden;
   width: 100px;
 }
+.userBlock{
+  display: flex;
+  gap: 6px;
+}
