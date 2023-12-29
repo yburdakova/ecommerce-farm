@@ -3,6 +3,7 @@ import { userRequest } from "../../middleware/requestMethods";
 import { useSelector } from "react-redux";
 import { RootState } from '../../redux/store';
 import { useLocation } from "react-router-dom";
+import { ProductData } from "../../constants/types";
 
 
 const Success = () => {
@@ -17,34 +18,28 @@ const Success = () => {
 
   useEffect(() => {
     const createOrder = async () => {
-      try {
-        const res = await userRequest.post("/orders", {
-          userId: currentUser._id,
-          products: cart.products.map((item) => ({
-            productId: item._id,
-            quantity: item._quantity,
-          })),
-          amount: cart.total,
-          address: data.billing_details.address,
-        });
-        setOrderId(res.data._id);
-      } catch (error){
-        console.log(error);
+      if (currentUser) {
+        try {
+          const res = await userRequest.post("/orders", {
+            userId: currentUser._id,
+            products: cart.products.map((item: ProductData) => ({
+              productId: item._id,
+              quantity: item.quantity,
+            })),
+            amount: cart.total,
+            address: data.billing_details.address,
+          });
+          setOrderId(res.data._id);
+        } catch (error){
+          console.log(error);
+        }
       }
     };
     data && createOrder();
   }, [cart, data, currentUser]);
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
+    <div>
       {orderId
         ? `Order has been created successfully. Your order number is ${orderId}`
         : `Successfull. Your order is being prepared...`}

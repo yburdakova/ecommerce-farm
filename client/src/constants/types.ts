@@ -44,28 +44,16 @@ export interface CartState {
 }
 
 interface UserData {
-    username: {
-        type: string,
-        required: true,
-        unique: true
-    },
-    email:{
-        type: string,
-        required: true,
-        unique: true
-    },
-    password:{
-        type: string,
-        required: true
-    },
-    isAdmin: {
-        type: boolean,
-        default: false
-    }
+  _id: string,
+  username: string,
+  password: string,
+  isAdmin: boolean,
+  createdAt: Date,
+  updatedAt:Date,
 }
 
 export interface UserState {
-  currentUser: UserData;
+  currentUser: UserData | null;
   isFetching: boolean;
   error: boolean
 }
