@@ -14,6 +14,7 @@ const KEY = import.meta.env.VITE_STRIPE;
 
 const Cart = () => {
   const user = useSelector((state: RootState) => state.user.currentUser);
+  const cart = useSelector((state: RootState) => state.cart);
   const { products, quantity, totalPrice, discount, deliveryPrice } = useSelector((state: RootState) => state.cart);
   const [stripeToken, setStripeToken] = useState<{ id: string } | null>(null);
   const navigate = useNavigate();
@@ -30,14 +31,15 @@ const Cart = () => {
             tokenId: stripeToken.id,
             amount: totalPrice * 100,
           });
-          navigate("/success", { replace: true, state: { stripeData: response.data, products: products }});
+          console.log(cart)
+          navigate("/success", { replace: true, state: { stripeData: response.data, cart: cart }});
         } catch (error) {
           console.log(error);
         }
       }
   }
   stripeToken && makeRequest();
-  }, [stripeToken, totalPrice, navigate, user, products])
+  }, [stripeToken, totalPrice, navigate, user, cart])
 
   return (
     <section className={styles.cartContainer}>

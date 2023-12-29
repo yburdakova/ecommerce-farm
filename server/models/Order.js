@@ -8,24 +8,21 @@ const OrderSchema = new mongoose.Schema(
         },
         products: [
             {
-                productId:{
+                productId: {
                     type: String,
                 },
-                quantity:{
+                quantity: {
                     type: Number,
                     default: 1
                 },
                 title: {
                     type: String,
-                    required: true
                 },
                 price: {
                     type: Number,
-                    required: true
                 },
                 measure: {
                     type: String,
-                    required: true
                 },
             }
         ],
@@ -33,19 +30,7 @@ const OrderSchema = new mongoose.Schema(
             type: Number,
             required: true
         },
-        title: {
-                    type: String,
-                    required: true
-                },
-                price: {
-                    type: Number,
-                    required: true
-                },
-                measure: {
-                    type: String,
-                    required: true
-                },
-        address:{
+        address: {
             type: Object,
             required: true
         },
@@ -54,10 +39,9 @@ const OrderSchema = new mongoose.Schema(
             default: "pending"
         }
     },
-
     {
         timestamps: true
     }
-)
+);
 
 export const Order = mongoose.model('Order', OrderSchema);

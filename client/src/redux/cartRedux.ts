@@ -61,15 +61,15 @@ const cartSlice = createSlice({
       const discountAmount = productsTotal * (state.discount / 100);
       state.totalPrice = productsTotal + state.deliveryPrice - discountAmount;
     },
-
+    
     cleanCart: (state) => {
       state.products = [];
       state.quantity = 0;
       state.deliveryPrice = 0;
       state.discount = 0;
       state.totalPrice = 0;
-    },
-  }
+  },
+}
 });
 
 export const { 
