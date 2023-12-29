@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import styles from './Account.module.css'
 import { userRequest } from '../../middleware/requestMethods';
+import { formatDate } from '../../middleware/formatDate';
 
 const Account = () => {
 
@@ -15,6 +16,8 @@ const Account = () => {
         try {
           const response = await userRequest(user.accessToken).get(`http://localhost:5555/api/orders/find/${user._id}`, {
         });
+        console.log(response.data);
+        
         setOrders(response.data);
         } catch (error) {
           console.error('Ошибка при получении заказов:', error);
@@ -41,16 +44,17 @@ const Account = () => {
         <div className="">Password: </div>
         <button>change password</button>
       </div>
-      <div className="">{user?._id}</div>
       {orders 
         ? (
           <div>
             <div className="">Your orders: </div>
             {orders.map((order, index) => (
-              <div className="" key={order._id}>
+              <div className={styles.orderItem} key={order._id}>
                 <div className="">{index + 1}</div>
                 <div className="">Order number: {order._id}</div>
+                <div className="">Order date: {formatDate(order.createdAt)}</div>
                 <div className="">Amount: ${order.amount}</div>   
+                <div className="">Details</div>
               </div>  
             ))}
           </div>

@@ -13,3 +13,7 @@
 .name{
   text-transform: capitalize;
 }
+.orderItem{
+  display: flex;
+  gap: 20px;
+}
