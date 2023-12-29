@@ -9,6 +9,7 @@ import { userRequest } from '../../middleware/requestMethods';
 import { useNavigate } from 'react-router-dom';
 import { logo } from '../../assets';
 
+
 const KEY = import.meta.env.VITE_STRIPE;
 
 const Cart = () => {
@@ -29,8 +30,7 @@ const Cart = () => {
             tokenId: stripeToken.id,
             amount: totalPrice * 100,
           });
-          localStorage.setItem('paymentResponse', JSON.stringify(response.data));
-          navigate("/success"); 
+          navigate("/success", { replace: true, state: { stripeData: response.data, products: products }});
         } catch (error) {
           console.log(error);
         }
