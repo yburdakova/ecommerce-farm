@@ -6,7 +6,7 @@ import { Footer, Header } from './components';
 
 function App() {
   
-  const user = true;
+  const user = false;
 
   return (
     <BrowserRouter>

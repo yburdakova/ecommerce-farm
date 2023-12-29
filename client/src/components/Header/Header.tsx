@@ -17,7 +17,7 @@ export const Header = () => {
         </div>
       </Link>
       <nav className="menu">MENU</nav>
-      <div className="user">USER</div>
+      <Link to={"/login"}>LOGIN</Link>
       <div className="user">LANG</div>
       <Link to={"/cart"}><CartBox quantity={quantity}/></Link>
     </header>
