@@ -51,6 +51,7 @@ export interface UserData {
   isAdmin?: boolean,
   createdAt?: Date,
   updatedAt?:Date,
+  accessToken?: string
 }
 
 export interface UserState {

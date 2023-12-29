@@ -13,7 +13,7 @@ import { logo } from '../../assets';
 const KEY = import.meta.env.VITE_STRIPE;
 
 const Cart = () => {
-
+  const user = useSelector((state: RootState) => state.user.currentUser);
   const { products, quantity, totalPrice, discount, deliveryPrice } = useSelector((state: RootState) => state.cart);
   const [stripeToken, setStripeToken] = useState<{ id: string } | null>(null);
   const navigate = useNavigate();
@@ -24,9 +24,9 @@ const Cart = () => {
   
   useEffect(() => {
     const makeRequest = async () => {
-      if (stripeToken) {
+      if (stripeToken&& user) {
         try {
-          const response = await userRequest.post("/checkout/payment", {
+          const response = await userRequest(user.accessToken).post("/checkout/payment", {
             tokenId: stripeToken.id,
             amount: totalPrice * 100,
           });
@@ -37,7 +37,7 @@ const Cart = () => {
       }
   }
   stripeToken && makeRequest();
-  }, [stripeToken, totalPrice, navigate])
+  }, [stripeToken, totalPrice, navigate, user, products])
 
   return (
     <section className={styles.cartContainer}>
