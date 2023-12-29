@@ -8,8 +8,8 @@ import { ProductData } from "../../constants/types";
 
 const Success = () => {
   const location = useLocation();
-  console.log(location);
-
+  console.log("Data received on success page:", location.state);
+  
   const data = location.state.stripeData;
   const cart = location.state.cart;
   const currentUser = useSelector((state: RootState) => state.user.currentUser);
@@ -20,15 +20,19 @@ const Success = () => {
     const createOrder = async () => {
       if (currentUser) {
         try {
-          const res = await userRequest.post("/orders", {
+          const res = await userRequest(currentUser.accessToken).post("/orders", {
             userId: currentUser._id,
             products: cart.products.map((item: ProductData) => ({
               productId: item._id,
               quantity: item.quantity,
+              title: item.title,
+              price: item.price,
+              measure: item.measure
             })),
             amount: cart.total,
             address: data.billing_details.address,
           });
+          console.log (`Data for DB: ${res.data}`)
           setOrderId(res.data._id);
         } catch (error){
           console.log(error);
@@ -43,7 +47,8 @@ const Success = () => {
       {orderId
         ? `Order has been created successfully. Your order number is ${orderId}`
         : `Successfull. Your order is being prepared...`}
-      <button style={{ padding: 10, marginTop: 20 }}>Go to Homepage</button>
+      <button>Go to Homepage</button>
+      <button>See all orders</button>
     </div>
   )
 }

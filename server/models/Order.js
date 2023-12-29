@@ -15,12 +15,36 @@ const OrderSchema = new mongoose.Schema(
                     type: Number,
                     default: 1
                 },
+                title: {
+                    type: String,
+                    required: true
+                },
+                price: {
+                    type: Number,
+                    required: true
+                },
+                measure: {
+                    type: String,
+                    required: true
+                },
             }
         ],
         amount: {
             type: Number,
             required: true
         },
+        title: {
+                    type: String,
+                    required: true
+                },
+                price: {
+                    type: Number,
+                    required: true
+                },
+                measure: {
+                    type: String,
+                    required: true
+                },
         address:{
             type: Object,
             required: true

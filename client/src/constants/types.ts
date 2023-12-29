@@ -18,6 +18,7 @@ export interface ProductItemProps{
 
 export interface ProductData {
   _id?: string;
+  productId?: string;
   title: string;
   decription: string;
   image: string;
@@ -29,6 +30,14 @@ export interface ProductData {
   updatedAt?: Date;
   quantity?: number;
 }
+
+export interface OrderProps {
+  _id: string;
+  createdAt: string;
+  amount: number;
+  products: ProductData[];
+}
+
 
 export interface SortBarProps {
   cat: string;

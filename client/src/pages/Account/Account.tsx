@@ -4,19 +4,16 @@ import { RootState } from '../../redux/store';
 import styles from './Account.module.css'
 import { userRequest } from '../../middleware/requestMethods';
 import { formatDate } from '../../middleware/formatDate';
+import { OrderProps } from '../../constants/types';
 
 const Account = () => {
 
   const user = useSelector((state: RootState) => state.user.currentUser);
-  const [orders, setOrders] = useState([]); 
-  const [openedOrderId, setOpenedOrderId] = useState(null);
+  const [orders, setOrders] = useState<OrderProps[]>([]); 
+  const [openedOrderId, setOpenedOrderId] = useState<string | null>(null);
   
-  const toggleOrderDetails = (orderId) => {
-    if (openedOrderId === orderId) {
-      setOpenedOrderId(null); 
-    } else {
-      setOpenedOrderId(orderId); 
-    }
+  const toggleOrderDetails = (orderId: string) => {
+    setOpenedOrderId(prevOrderId => prevOrderId === orderId ? null : orderId);
   };
 
   useEffect(() => {
@@ -26,7 +23,6 @@ const Account = () => {
           const response = await userRequest(user.accessToken).get(`http://localhost:5555/api/orders/find/${user._id}`, {
         });
         console.log(response.data);
-        
         setOrders(response.data);
         } catch (error) {
           console.error('Ошибка при получении заказов:', error);
@@ -58,8 +54,8 @@ const Account = () => {
           <div>
             <div className="">Your orders: </div>
             {orders.map((order, index) => (
-              <div className={styles.orderBox}>
-                <div className={styles.orderItem} key={order._id}>
+              <div className={styles.orderBox} key={order._id}>
+                <div className={styles.orderItem} >
                   <div className="">{index + 1}</div>
                   <div className="">Order number: {order._id}</div>
                   <div className="">Order date: {formatDate(order.createdAt)}</div>
