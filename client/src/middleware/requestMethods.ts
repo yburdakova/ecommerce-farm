@@ -9,6 +9,6 @@ export const publicRequest = axios.create({
 export const userRequest = (token: string | undefined) => axios.create({
   baseURL: BASE_URL,
   headers: {
-    Authorization: `Bearer ${token}`
+    token: `Bearer ${token}`
   }
 })
