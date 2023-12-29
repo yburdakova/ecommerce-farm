@@ -9,6 +9,15 @@ const Account = () => {
 
   const user = useSelector((state: RootState) => state.user.currentUser);
   const [orders, setOrders] = useState([]); 
+  const [openedOrderId, setOpenedOrderId] = useState(null);
+  
+  const toggleOrderDetails = (orderId) => {
+    if (openedOrderId === orderId) {
+      setOpenedOrderId(null); 
+    } else {
+      setOpenedOrderId(orderId); 
+    }
+  };
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -49,13 +58,26 @@ const Account = () => {
           <div>
             <div className="">Your orders: </div>
             {orders.map((order, index) => (
-              <div className={styles.orderItem} key={order._id}>
-                <div className="">{index + 1}</div>
-                <div className="">Order number: {order._id}</div>
-                <div className="">Order date: {formatDate(order.createdAt)}</div>
-                <div className="">Amount: ${order.amount}</div>   
-                <div className="">Details</div>
-              </div>  
+              <div className={styles.orderBox}>
+                <div className={styles.orderItem} key={order._id}>
+                  <div className="">{index + 1}</div>
+                  <div className="">Order number: {order._id}</div>
+                  <div className="">Order date: {formatDate(order.createdAt)}</div>
+                  <div className="">Amount: ${order.amount}</div>   
+                  <button onClick={() => toggleOrderDetails(order._id)}>Details</button>
+                </div> 
+                {openedOrderId === order._id && (
+                  <div className={styles.orderDetails}>
+                    {order.products.map((product, index) => (
+                      <div key={product.productId} className={styles.product}>
+                        <div className="">{index + 1}</div>
+                        <div>Product ID: {product.productId}</div>
+                        <div>Quantity: {product.quantity}</div>
+                      </div>
+                    ))}
+                    </div>
+                )}
+              </div>
             ))}
           </div>
         )
