@@ -1,7 +1,7 @@
 import  { useState } from 'react'
 import { deliveryData } from '../../constants/data'
 import { useDispatch } from 'react-redux';
-import { updateDeliveryPrice } from '../../redux/cartSlice';
+import { updateDeliveryPrice } from '../../redux/cartRedux';
 import styles from './DeliverySelect.module.css';
 
 const DeliverySelect = () => {

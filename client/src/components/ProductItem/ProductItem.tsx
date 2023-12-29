@@ -2,7 +2,7 @@ import styles from './ProductItem.module.css';
 import { cart } from '../../assets';
 import { Link } from 'react-router-dom';
 import { ProductItemProps } from '../../constants/types';
-import { addProduct } from '../../redux/cartSlice';
+import { addProduct } from '../../redux/cartRedux';
 import { useDispatch } from 'react-redux';
 
 const ProductItem: React.FC<ProductItemProps> = ({ item }) => {

@@ -43,7 +43,7 @@ export interface CartState {
   discount: number,
 }
 
-interface UserData {
+export interface UserData {
   _id: string,
   username: string,
   password: string,

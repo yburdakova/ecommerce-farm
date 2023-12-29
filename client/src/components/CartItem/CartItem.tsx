@@ -3,7 +3,7 @@ import { trash } from '../../assets';
 import styles from './CartItem.module.css';
 import { CartItemProps } from '../../constants/types';
 import { useDispatch } from 'react-redux';
-import { deleteProduct, updateProductQuantity } from '../../redux/cartSlice';
+import { deleteProduct, updateProductQuantity } from '../../redux/cartRedux';
 
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
   const dispatch = useDispatch();

@@ -1,5 +1,5 @@
 import { SetStateAction, useState } from 'react';
-import { addCode } from '../../redux/cartSlice';
+import { addCode } from '../../redux/cartRedux';
 import { useDispatch } from 'react-redux';
 import { saleCodes } from '../../constants/data';
 import styles from './Discount.module.css';
