@@ -72,7 +72,7 @@ const Account = () => {
                         <div> </div>
                       </div>
                     ))}
-                    </div>
+                  </div>
                 )}
               </div>
             ))}
