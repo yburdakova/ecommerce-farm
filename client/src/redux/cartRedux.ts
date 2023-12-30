@@ -7,6 +7,7 @@ const cartSlice = createSlice({
     products: [] as ProductData[],
     quantity: 0,
     deliveryPrice: 0,
+    deliveryPlace: "No delivery",
     discount: 0,
     totalPrice: 0
   } as CartState,
@@ -61,6 +62,10 @@ const cartSlice = createSlice({
       const discountAmount = productsTotal * (state.discount / 100);
       state.totalPrice = productsTotal + state.deliveryPrice - discountAmount;
     },
+
+    updateDeliveryPlace: (state, action) => {
+      state.deliveryPlace = action.payload;
+    },
     
     cleanCart: (state) => {
       state.products = [];
@@ -78,7 +83,8 @@ export const {
   deleteProduct, 
   addCode, 
   updateDeliveryPrice,
-  cleanCart 
+  cleanCart,
+  updateDeliveryPlace
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

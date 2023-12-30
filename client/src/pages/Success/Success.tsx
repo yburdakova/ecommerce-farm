@@ -44,6 +44,7 @@ const Success = () => {
           })),
           amount: cart.totalPrice,
           deliveryPrice: cart.deliveryPrice,
+          deliveryPlace: cart.deliveryPlace,
           discount: cart.discount,
           address: data.billing_details.address,
         };

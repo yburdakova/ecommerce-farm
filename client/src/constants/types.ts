@@ -49,6 +49,7 @@ export interface CartState {
   quantity: number;
   totalPrice: number;
   deliveryPrice: number,
+  deliveryPlace: string;
   discount: number,
 }
 
