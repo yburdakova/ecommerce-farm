@@ -43,6 +43,8 @@ const Success = () => {
             measure: item.measure
           })),
           amount: cart.totalPrice,
+          deliveryPrice: cart.deliveryPrice,
+          discount: cart.discount,
           address: data.billing_details.address,
         };
         console.log(order);

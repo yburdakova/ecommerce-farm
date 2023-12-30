@@ -34,6 +34,10 @@ const OrderSchema = new mongoose.Schema(
             type: Number,
             default: 0,
         },
+        deliveryPlace: {
+            type: String,
+            default: 'No delivery',
+        },
         discount: {
             type: Number,
             default: 0,
