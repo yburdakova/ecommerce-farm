@@ -67,8 +67,9 @@ const Account = () => {
                     {order.products.map((product, index) => (
                       <div key={product.productId} className={styles.product}>
                         <div className="">{index + 1}</div>
-                        <div>Product ID: {product.productId}</div>
-                        <div>Quantity: {product.quantity}</div>
+                        <div> {product.title}</div>
+                        <div> $ {product.price} / {product.measure} x {product.quantity} = $ {product.price * product.quantity}</div>
+                        <div> </div>
                       </div>
                     ))}
                     </div>

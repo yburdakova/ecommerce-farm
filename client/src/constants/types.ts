@@ -28,7 +28,7 @@ export interface ProductData {
   inStock?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
-  quantity?: number;
+  quantity: number;
 }
 
 export interface OrderProps {
