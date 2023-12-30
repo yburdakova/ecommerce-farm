@@ -64,6 +64,8 @@ const Account = () => {
                 </div> 
                 {openedOrderId === order._id && (
                   <div className={styles.orderDetails}>
+                    <div className="">Delivery price ${order.deliveryPrice} to {order.deliveryPlace}</div>
+                    <div className="">Discount: {order.discount}%</div>
                     {order.products.map((product, index) => (
                       <div key={product.productId} className={styles.product}>
                         <div className="">{index + 1}</div>

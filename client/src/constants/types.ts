@@ -36,6 +36,9 @@ export interface OrderProps {
   createdAt: string;
   amount: number;
   products: ProductData[];
+  deliveryPrice?: number,
+  deliveryPlace?: string;
+  discount?: number,
 }
 
 
