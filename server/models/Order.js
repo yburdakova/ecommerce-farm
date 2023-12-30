@@ -30,6 +30,14 @@ const OrderSchema = new mongoose.Schema(
             type: Number,
             required: true
         },
+        deliveryPrice: {
+            type: Number,
+            default: 0,
+        },
+        discount: {
+            type: Number,
+            default: 0,
+        },
         address: {
             type: Object,
             required: true
