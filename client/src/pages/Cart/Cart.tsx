@@ -15,13 +15,14 @@ const KEY = import.meta.env.VITE_STRIPE;
 const Cart = () => {
   const user = useSelector((state: RootState) => state.user.currentUser);
   const cart = useSelector((state: RootState) => state.cart);
-  const { products, quantity, totalPrice, discount, deliveryPrice } = useSelector((state: RootState) => state.cart);
+  const { products, quantity, totalPrice, subtotalPrice, discount, deliveryPrice } = useSelector((state: RootState) => state.cart);
   const [stripeToken, setStripeToken] = useState<{ id: string } | null>(null);
   const navigate = useNavigate();
   
   const onToken = (token: { id: string }) => {
     setStripeToken(token);
   };
+  
   
   useEffect(() => {
     const makeRequest = async () => {
@@ -60,7 +61,7 @@ const Cart = () => {
               <div className={styles.orderTitle}>Order summary</div>
               <div className={styles.orderPoint}>
                 <span >Subtotal: </span>
-                <span className={styles.bold}>$ {totalPrice}</span>
+                <span className={styles.bold}>$ {subtotalPrice}</span>
               </div>
               <div className={styles.orderPoint}>
                 <span >Estimated delivery: </span>
@@ -68,7 +69,7 @@ const Cart = () => {
               </div>
               <div className={styles.orderPoint}>
                 <span >Discount: </span>
-                <span className={styles.bold}>$ {discount}</span>
+                <span className={styles.bold}> {discount}%</span>
               </div>
               <div className={styles.total}>
                 <span >Total: </span>
