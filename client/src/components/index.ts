@@ -8,6 +8,8 @@ import SortBar from "./SortBar/SortBar";
 import CartBox from "./CartBox/CartBox";
 import Discount from "./Discount/Discount";
 import DeliverySelect from "./DeliverySelect/DeliverySelect";
+import CartItem from "./CartItem/CartItem";
+
 
 
 
@@ -22,5 +24,6 @@ export {
   SortBar,
   CartBox,
   Discount,
-  DeliverySelect
+  DeliverySelect,
+  CartItem
 }

@@ -36,6 +36,7 @@ export const Header = () => {
           </div>
         : <Link to={"/login"}>LOGIN</Link>
       }
+      {user?.isAdmin && <Link to={"/admin"}>ADMIN DASHBOARD</Link>}
       <div className="user">LANG</div>
       <Link to={"/cart"}><CartBox quantity={quantity}/></Link>
     </header>

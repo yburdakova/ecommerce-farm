@@ -8,7 +8,6 @@ export const login = async (dispatch: Dispatch, user: UserData) => {
   try {
     const response = await publicRequest.post("/auth/login", user)
     dispatch(loginSuccess(response.data))
-    console.log(response.data)
     if (response.data.isAdmin ){
       dispatch(adminAccess())
       console.log("Admin access")

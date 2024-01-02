@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux';
 import styles from './Cart.module.css'
-import { CartItem } from '..';
 import { RootState } from '../../redux/store';
-import { DeliverySelect, Discount } from '../../components';
+import { CartItem, DeliverySelect, Discount } from '../../components';
 import StripeCheckout from 'react-stripe-checkout';
 import { useEffect, useState } from 'react';
 import { userRequest } from '../../middleware/requestMethods';
