@@ -71,6 +71,7 @@ export interface UserData {
 export interface UserState {
   currentUser: UserData | null;
   isFetching: boolean;
+  isAdmin: boolean;
   error: boolean
 }
 

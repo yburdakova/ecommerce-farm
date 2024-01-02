@@ -6,6 +6,7 @@ const userSlice = createSlice({
   initialState: {
     currentUser: null,
     isFetching: false,
+    isAdmin: false,
     error: false
   } as UserState,
   
@@ -24,6 +25,9 @@ const userSlice = createSlice({
       state.currentUser = action.payload,
       state.error = false
     },
+    adminAccess: (state) => {
+      state.isAdmin = true
+    },
     loginFailure: (state) => {
       state.isFetching = false,
       state.error = true
@@ -39,7 +43,8 @@ export const {
   loginFinish,
   loginSuccess,
   loginFailure,
-  resetError
+  resetError,
+  adminAccess
 
 } = userSlice.actions;
 
