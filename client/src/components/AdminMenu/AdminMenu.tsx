@@ -5,12 +5,12 @@ import styles from './AdminMenu.module.css'
 const AdminMenu = () => {
   return (
     <div className={styles.admcontainer}>
-      <Link to="/admin">Dashboard</Link>
-      <Link to="/admin/orders">Orders</Link>
-      <Link to="/admin/users">Users</Link>
-      <Link to="/admin/products">Products</Link>
-      <Link to="/admin/delivery">Delivery</Link>
-      <Link to="/admin/products">Caterories</Link>
+      <Link to="/admin" className={styles.menuItem}>Dashboard</Link>
+      <Link to="/admin/orders" className={styles.menuItem}>Orders</Link>
+      <Link to="/admin/users" className={styles.menuItem}>Users</Link>
+      <Link to="/admin/products" className={styles.menuItem}>Products</Link>
+      <Link to="/admin/delivery" className={styles.menuItem}>Delivery</Link>
+      <Link to="/admin/products" className={styles.menuItem}>Categories</Link>
     </div>
   )
 }
