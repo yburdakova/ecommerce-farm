@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 import styles from './Login.module.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/apiCalls';
 import { RootState } from '../../redux/store';
+import { resetError } from '../../redux/userRedux';
 
 const Login = () => {
 
@@ -12,6 +13,10 @@ const [password, setPassword] = useState('');
 
 const dispatch = useDispatch();
 const { isFetching, error } = useSelector((state: RootState) => state.user);
+
+useEffect(() => {
+  dispatch(resetError());
+}, [dispatch]);
 
 const handleClickLogin = (e: { preventDefault: () => void; }) => {
   e.preventDefault();

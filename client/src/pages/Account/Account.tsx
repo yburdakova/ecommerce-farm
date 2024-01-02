@@ -25,7 +25,7 @@ const Account = () => {
         console.log(response.data);
         setOrders(response.data);
         } catch (error) {
-          console.error('Ошибка при получении заказов:', error);
+          console.error('Order error:', error);
         }
       }
     };
