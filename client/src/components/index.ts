@@ -9,6 +9,8 @@ import CartBox from "./CartBox/CartBox";
 import Discount from "./Discount/Discount";
 import DeliverySelect from "./DeliverySelect/DeliverySelect";
 import CartItem from "./CartItem/CartItem";
+import AdminMenu from "./AdminMenu/AdminMenu";
+
 
 
 
@@ -25,5 +27,6 @@ export {
   CartBox,
   Discount,
   DeliverySelect,
-  CartItem
+  CartItem,
+  AdminMenu
 }

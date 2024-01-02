@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
-import { Account, Cart, Dashboard, DoNotRemember, Home, Login, Product, ProductList, Register, Registration, Success } from './pages'
+import { Account, AdmDashboard, Admpanel, Cart, DoNotRemember, Home, Login, Product, ProductList, Products, Register, Registration, Success, Users } from './pages'
 import { Footer, Header } from './components';
 import { useSelector } from 'react-redux';
 import { RootState } from './redux/store';
@@ -9,6 +9,7 @@ import { RootState } from './redux/store';
 function App() {
   
   const user = useSelector((state: RootState) => state.user.currentUser);
+  const admin = user?.isAdmin;
 
   return (
     <BrowserRouter>
@@ -17,7 +18,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element ={ user ?  <Navigate to="/" /> : <Login />} />
+          <Route path="/login" element ={ user && admin ?  <Navigate to="/admin"/> : user ? <Navigate to="/" /> : <Login />} />
           <Route path="/register" element ={ user ?  <Navigate to="/" /> : <Register />} />
           <Route path="/products/:category" element={<ProductList />} />
           <Route path="/product/:id" element={<Product />} />
@@ -25,8 +26,15 @@ function App() {
           <Route path="/success" element={<Success />} />
           <Route path="/user" element={<Account />} />
           <Route path="/auth" element={<Registration />} />
-          <Route path="/admin" element={<Dashboard />} />
           <Route path="/repassword" element={<DoNotRemember />} />
+          <Route path="/admin" element={<Admpanel />} >
+            <Route index element={<AdmDashboard/>} />
+            <Route path="users" element={<Users />} />
+            <Route path="products" element={<Products/>} />
+            <Route path="orders" element={<Products/>} />
+            <Route path="delivery" element={<Products/>} />
+            <Route path="categories" element={<Products/>} />
+          </Route>
         </Routes>
       </main>
       <Footer/>

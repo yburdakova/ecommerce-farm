@@ -1,5 +1,5 @@
 import Account from "./Account/Account";
-import Dashboard from "./AdminDashboard/Dashboard";
+import Admpanel from "./Admpanel/Admpanel";
 import Cart from "./Cart/Cart";
 import DoNotRemember from "./DoNotRemember/DoNotRemember";
 import Home from "./Home/Home";
@@ -9,8 +9,9 @@ import ProductList from "./ProductList/ProductList";
 import Register from "./Register/Register";
 import Registration from "./Registration/Registration";
 import Success from "./Success/Success";
-
-
+import Users from "./Users/Users";
+import Products from "./Products/Products";
+import AdmDashboard from "./AdmDashboard/AdmDashboard";
 
 
 export {
@@ -22,7 +23,10 @@ export {
   Register,
   Success,
   Account,
-  Dashboard,
+  Admpanel,
   Registration,
-  DoNotRemember
+  DoNotRemember,
+  Users,
+  Products,
+  AdmDashboard
 } 

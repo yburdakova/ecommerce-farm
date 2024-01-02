@@ -26,11 +26,12 @@ const handleClickLogin = (e: { preventDefault: () => void; }) => {
   return (
     <div className={styles.container}>
       <form className={styles.loginForm}>
-        <label htmlFor="username">Email:</label>
+        <label htmlFor="email">Email:</label>
         <input 
-          id="username" 
+          id="email" 
           type="text" 
           value={email}
+          autoComplete="email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <label htmlFor="password">Password:</label>
@@ -38,6 +39,7 @@ const handleClickLogin = (e: { preventDefault: () => void; }) => {
           id="password" 
           type="password" 
           value={password}
+          autoComplete="current-password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <button className={styles.logButton} onClick={handleClickLogin} disabled={isFetching}>LOGIN</button>
