@@ -43,7 +43,7 @@ const handleClickLogin = (e: { preventDefault: () => void; }) => {
         <button className={styles.logButton} onClick={handleClickLogin} disabled={isFetching}>LOGIN</button>
         {error && <div className={styles.error}>Something went wrong...</div>}
       </form>
-      <Link to="/recovery" className={styles.p}>Do not remember the password</Link>
+      <Link to="/repassword" className={styles.p}>Do not remember the password</Link>
       <Link to='/auth' className={styles.p}>Create a new account</Link>
     </div>
   )

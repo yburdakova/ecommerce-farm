@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
-import { Account, Cart, Dashboard, Home, Login, Product, ProductList, Register, Registration, Success } from './pages'
+import { Account, Cart, Dashboard, DoNotRemember, Home, Login, Product, ProductList, Register, Registration, Success } from './pages'
 import { Footer, Header } from './components';
 import { useSelector } from 'react-redux';
 import { RootState } from './redux/store';
@@ -26,6 +26,7 @@ function App() {
           <Route path="/user" element={<Account />} />
           <Route path="/auth" element={<Registration />} />
           <Route path="/admin" element={<Dashboard />} />
+          <Route path="/repassword" element={<DoNotRemember />} />
         </Routes>
       </main>
       <Footer/>
