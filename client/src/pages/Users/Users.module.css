@@ -1,0 +1,22 @@
+.usersList{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.usersGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
+
+}
+
+.gridItem {
+  display: grid;
+  grid-template-columns: auto auto auto auto; 
+  gap: 20px;
+}
+
+.id {
+  font-size: 10px;
+}

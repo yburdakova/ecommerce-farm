@@ -1,0 +1,9 @@
+.orderList{
+  display: flex;
+  flex-direction: column;
+}
+
+.orderItem{
+  display: flex;
+  gap: 20px;
+}

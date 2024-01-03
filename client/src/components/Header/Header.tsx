@@ -28,6 +28,7 @@ export const Header = () => {
           <img src={logo} alt="Logo" width={80}/>
         </div>
       </Link>
+      <div className="user">LANG</div>
       <nav className="menu">MENU</nav>
       {user
         ? <div className={styles.userBlock}>
@@ -36,9 +37,12 @@ export const Header = () => {
           </div>
         : <Link to={"/login"}>LOGIN</Link>
       }
-      {user?.isAdmin && <Link to={"/admin"}>ADMIN DASHBOARD</Link>}
-      <div className="user">LANG</div>
-      <Link to={"/cart"}><CartBox quantity={quantity}/></Link>
+      {user?.isAdmin 
+        ? <Link to={"/admin"}>ADMIN DASHBOARD</Link>
+        : <Link to={"/cart"}><CartBox quantity={quantity}/></Link>
+      }
+      
+
     </header>
   )
 }

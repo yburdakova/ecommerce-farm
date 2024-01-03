@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
-import { Account, AdmDashboard, Admpanel, Cart, DoNotRemember, Home, Login, Product, ProductList, Products, Register, Registration, Success, Users } from './pages'
+import { Account, AdmDashboard, Admpanel, Cart, Categories, Delivery, DoNotRemember, Home, Login, Orders, Product, ProductList, Products, Register, Registration, Success, Users } from './pages'
 import { Footer, Header } from './components';
 import { useSelector } from 'react-redux';
 import { RootState } from './redux/store';
@@ -31,9 +31,9 @@ function App() {
             <Route index element={<AdmDashboard/>} />
             <Route path="users" element={<Users />} />
             <Route path="products" element={<Products/>} />
-            <Route path="orders" element={<Products/>} />
-            <Route path="delivery" element={<Products/>} />
-            <Route path="categories" element={<Products/>} />
+            <Route path="orders" element={<Orders/>} />
+            <Route path="delivery" element={<Delivery/>} />
+            <Route path="categories" element={<Categories/>} />
           </Route>
         </Routes>
       </main>

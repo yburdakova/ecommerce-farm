@@ -57,6 +57,12 @@ export interface CartState {
   discount: number,
 }
 
+export interface AdmState {
+  orders: [] ;
+  categories: [];
+  products: ProductData[];
+  delivery: [];
+}
 export interface UserData {
   _id?: string,
   username?: string,

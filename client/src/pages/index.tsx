@@ -12,6 +12,9 @@ import Success from "./Success/Success";
 import Users from "./Users/Users";
 import Products from "./Products/Products";
 import AdmDashboard from "./AdmDashboard/AdmDashboard";
+import Categories from "./Categories/Categories";
+import Delivery from "./Delivery/Delivery";
+import Orders from "./Orders/Orders";
 
 
 export {
@@ -28,5 +31,8 @@ export {
   DoNotRemember,
   Users,
   Products,
-  AdmDashboard
+  AdmDashboard,
+  Categories,
+  Delivery,
+  Orders
 } 
