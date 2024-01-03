@@ -65,13 +65,13 @@ export interface AdmState {
   delivery: [];
 }
 export interface UserData {
-  _id?: string,
-  username?: string,
-  email: string,
-  password: string,
-  isAdmin?: boolean,
-  createdAt?: Date,
-  updatedAt?:Date,
+  _id?: string;
+  username?: string;
+  email: string;
+  password: string;
+  isAdmin?: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
   accessToken?: string
 }
 
@@ -84,4 +84,11 @@ export interface UserState {
 
 export interface CartItemProps {
   item: ProductData;
+}
+
+export interface CategoryData {
+  _id: string;
+  title: string;
+  createdAt?: Date;
+  updatedAt?: Date,
 }

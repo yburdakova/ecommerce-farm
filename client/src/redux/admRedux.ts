@@ -12,7 +12,7 @@ const admSlice = createSlice({
   
   reducers: {
     addProduct: (state, action) => {
-
+      state.orders = action.payload
     },
 
   }

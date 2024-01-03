@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { userRequest } from '../../middleware/requestMethods';
 import { RootState } from '../../redux/store';
 import { formatDate } from '../../middleware/formatDate';
 import styles from './Users.module.css'
+import { UserData } from '../../constants/types';
 
 const Users = () => {
 
   const admin = useSelector((state: RootState) => state.user.currentUser);
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState<UserData[]>([])
 
   useEffect(() => {
     const getUsers = async () => {
@@ -38,7 +39,7 @@ const Users = () => {
                   <div className={styles.id}>id: {user._id}</div>
                 </div>
                 <div className={styles.gridCell}>{user.email}</div>
-                <div className={styles.gridCell}>{formatDate(user.createdAt)}</div>
+                <div className={styles.gridCell}>{formatDate(user.createdAt?.toString())}</div>
               </div>
             ))}
           </div>

@@ -1,4 +1,7 @@
-export const formatDate = (dateString: string) => {
+export const formatDate = (dateString?: string) => {
+  if (!dateString) {
+    return 'No date provided'; 
+  }
   const date = new Date(dateString);
   const year = date.getFullYear().toString().slice(-2); 
   let month = (date.getMonth() + 1).toString(); 
