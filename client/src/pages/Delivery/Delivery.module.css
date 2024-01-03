@@ -1,0 +1,13 @@
+.form{
+  display: flex;
+  gap: 20px;
+}
+
+.price {
+  width: 60px;
+}
+
+.success{
+  color: rgb(51, 203, 13);
+  margin-top: 10px;
+}
