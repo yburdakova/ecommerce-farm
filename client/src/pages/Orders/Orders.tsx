@@ -1,17 +1,18 @@
-import  { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { RootState } from '../../redux/store';
 import { useSelector } from 'react-redux';
 import { userRequest } from '../../middleware/requestMethods';
 import { formatDate } from '../../middleware/formatDate';
 import styles from './Orders.module.css'
+import { OrderProps } from '../../constants/types';
 
 const Orders = () => {
 
   const admin = useSelector((state: RootState) => state.user.currentUser);
-  const [orders, setOrders] = useState([])
+  const [orders, setOrders] = useState<OrderProps[]>([])
 
   useEffect(() => {
-    const getUsers = async () => {
+    const getOrders = async () => {
       if (admin?.isAdmin) {
         try {
           const response = await userRequest(admin.accessToken).get("/orders");
@@ -22,7 +23,7 @@ const Orders = () => {
         }
       }
   }
-  getUsers();
+  getOrders();
   }, [admin])
 
   return (

@@ -38,6 +38,7 @@ export interface OrderProps {
   products: ProductData[];
   deliveryPrice?: number,
   deliveryPlace?: string;
+  status?: string;
   discount?: number,
 }
 
