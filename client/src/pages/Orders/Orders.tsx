@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 import { userRequest } from '../../middleware/requestMethods';
 import { formatDate } from '../../middleware/formatDate';
 import styles from './Orders.module.css'
-import { OrderProps } from '../../constants/types';
+import { OrderData } from '../../constants/types';
 
 const Orders = () => {
 
   const admin = useSelector((state: RootState) => state.user.currentUser);
-  const [orders, setOrders] = useState<OrderProps[]>([])
+  const [orders, setOrders] = useState<OrderData[]>([])
 
   useEffect(() => {
     const getOrders = async () => {

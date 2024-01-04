@@ -31,7 +31,7 @@ export interface ProductData {
   quantity: number;
 }
 
-export interface OrderProps {
+export interface OrderData {
   _id: string;
   createdAt: string;
   amount: number;
@@ -48,6 +48,42 @@ export interface SortBarProps {
   onInputChange: (value: string) => void;
 }
 
+
+export interface DeliveryData {
+  _id: string;
+  cityName: string;
+  price: number;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface UserData {
+  _id?: string;
+  username?: string;
+  email: string;
+  password: string;
+  isAdmin?: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+  accessToken?: string
+}
+export interface CartItemProps {
+  item: ProductData;
+}
+
+export interface CategoryData {
+  _id: string;
+  title: string;
+  createdAt?: Date;
+  updatedAt?: Date,
+}
+
+export interface UserState {
+  currentUser: UserData | null;
+  isFetching: boolean;
+  isAdmin: boolean;
+  error: boolean
+}
 export interface CartState {
   products: ProductData[];
   quantity: number;
@@ -59,36 +95,8 @@ export interface CartState {
 }
 
 export interface AdmState {
-  orders: [] ;
-  categories: [];
+  orders: OrderData[] ;
+  categories: CategoryData[];
   products: ProductData[];
-  delivery: [];
-}
-export interface UserData {
-  _id?: string;
-  username?: string;
-  email: string;
-  password: string;
-  isAdmin?: boolean;
-  createdAt?: Date;
-  updatedAt?: Date;
-  accessToken?: string
-}
-
-export interface UserState {
-  currentUser: UserData | null;
-  isFetching: boolean;
-  isAdmin: boolean;
-  error: boolean
-}
-
-export interface CartItemProps {
-  item: ProductData;
-}
-
-export interface CategoryData {
-  _id: string;
-  title: string;
-  createdAt?: Date;
-  updatedAt?: Date,
+  delivery: DeliveryData[];
 }

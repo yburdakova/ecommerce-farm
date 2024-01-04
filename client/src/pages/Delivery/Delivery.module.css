@@ -11,3 +11,8 @@
   color: rgb(51, 203, 13);
   margin-top: 10px;
 }
+
+.listItem{
+  display: flex;
+  gap: 20px;
+}
