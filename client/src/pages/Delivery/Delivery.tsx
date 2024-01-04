@@ -7,6 +7,7 @@ import { DeliveryData } from '../../constants/types';
 
 const Delivery = () => {
   const admin = useSelector((state: RootState) => state.user.currentUser);
+  const deliveryState = useSelector((state: RootState) => state.admin.delivery);
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState(0);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -14,18 +15,7 @@ const Delivery = () => {
   const [delivery, setDelivery] = useState<DeliveryData[]>([])
 
   useEffect(() => {
-    const getDelivery = async () => {
-      if (admin?.isAdmin) {
-        try {
-          const response = await userRequest(admin.accessToken).get("/delivery");
-          console.log(response)
-          return setDelivery(response.data)
-        } catch (error) {
-          console.log(error);
-        }
-      }
-  }
-  getDelivery();
+    setDelivery(deliveryState)
   }, [admin, title])
 
   const onHandleAddPoint = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

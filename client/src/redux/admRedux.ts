@@ -11,15 +11,15 @@ const admSlice = createSlice({
   } as AdmState,
   
   reducers: {
-    addProduct: (state, action) => {
-      state.orders = action.payload
+    addDelivery: (state, action) => {
+      state.delivery = action.payload
     },
 
   }
 });
 
 export const { 
-  addProduct, 
+  addDelivery, 
 } = admSlice.actions;
 
 export default admSlice.reducer;
