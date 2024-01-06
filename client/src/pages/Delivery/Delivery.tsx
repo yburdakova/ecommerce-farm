@@ -2,20 +2,33 @@ import React, { useEffect, useState } from 'react';
 import styles from './Delivery.module.css';
 import { RootState } from '../../redux/store';
 import { userRequest } from '../../middleware/requestMethods';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { DeliveryData } from '../../constants/types';
+import { addDelivery } from '../../redux/admRedux';
 
 const Delivery = () => {
   const admin = useSelector((state: RootState) => state.user.currentUser);
-  const deliveryState = useSelector((state: RootState) => state.admin.delivery);
+  const dispatch = useDispatch();
+
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState(0);
   const [isSuccess, setIsSuccess] = useState(false);
-
   const [delivery, setDelivery] = useState<DeliveryData[]>([])
 
   useEffect(() => {
-    setDelivery(deliveryState)
+    const getDelivery = async () => {
+      if (admin?.isAdmin) {
+        try {
+          const response = await userRequest(admin.accessToken).get("/delivery");
+          console.log(response)
+          dispatch(addDelivery(response.data))
+          return setDelivery(response.data)
+        } catch (error) {
+          console.log(error);
+        }
+      }
+  }
+  getDelivery();
   }, [admin, title])
 
   const onHandleAddPoint = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
