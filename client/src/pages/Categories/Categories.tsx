@@ -36,7 +36,7 @@ const Categories = () => {
     const makeRequest = async () => {
       if (admin) {
         try {
-          const response = await userRequest(admin.accessToken).post("/delivery/add_delivery", {
+          const response = await userRequest(admin.accessToken).post("/delivery/add_category", {
             cityName: title,
             price: price
           });
