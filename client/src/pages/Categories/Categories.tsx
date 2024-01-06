@@ -24,6 +24,36 @@ const Categories = () => {
   }
   getProducts();
   }, [admin])
+
+  const onHandleAddPoint = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+
+    if (!title || price <= 0) {
+      alert('Please provide valid title and price.');
+      return;
+    }
+
+    const makeRequest = async () => {
+      if (admin) {
+        try {
+          const response = await userRequest(admin.accessToken).post("/delivery/add_delivery", {
+            cityName: title,
+            price: price
+          });
+          console.log('Delivery point added:', response.data);
+          setTitle('');
+          setPrice(0);
+          setIsSuccess(true);
+          setTimeout(() => {
+            setIsSuccess(false);
+          }, 2000);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+    makeRequest();
+  };
   
   return (
     <div>
