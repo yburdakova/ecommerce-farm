@@ -9,6 +9,7 @@ const Categories = () => {
 
   const admin = useSelector((state: RootState) => state.user.currentUser);
   const dispatch = useDispatch();
+  const [catName, setCatName] = useState('');
   const [categories, setCategories] = useState<CategoryData[]>([])
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -30,7 +31,7 @@ const Categories = () => {
   const onHandleAddPoint = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
-    if (!title || price <= 0) {
+    if (!catName) {
       alert('Please provide valid title and price.');
       return;
     }
@@ -39,12 +40,10 @@ const Categories = () => {
       if (admin) {
         try {
           const response = await userRequest(admin.accessToken).post("/delivery/add_category", {
-            cityName: title,
-            price: price
+            title: catName
           });
           console.log('Delivery point added:', response.data);
-          setTitle('');
-          setPrice(0);
+          setCatName('');
           setIsSuccess(true);
           setTimeout(() => {
             setIsSuccess(false);
@@ -66,16 +65,8 @@ const Categories = () => {
         <input 
           type="text" 
           id='city' 
-          value={title} 
-          onChange={e => setTitle(e.target.value)}
-        />
-        <label htmlFor="price">Price: $</label>
-        <input 
-          type="number" 
-          id='price' 
-          value={price} 
-          onChange={e => setPrice(Number(e.target.value))}
-          className={styles.price}
+          value={catName} 
+          onChange={e => setCatName(e.target.value)}
         />
         <button onClick={e => onHandleAddPoint(e)}>Add</button>
       </form>
