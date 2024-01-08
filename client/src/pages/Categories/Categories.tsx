@@ -8,7 +8,9 @@ import styles from './Categories.module.css'
 const Categories = () => {
 
   const admin = useSelector((state: RootState) => state.user.currentUser);
+  const dispatch = useDispatch();
   const [categories, setCategories] = useState<CategoryData[]>([])
+  const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -58,6 +60,26 @@ const Categories = () => {
   return (
     <div>
       <h2>Categories</h2>
+      <div className="">Add new delivery point</div>
+      <form className={styles.form}>
+        <label htmlFor="city">Name of delivery point:</label>
+        <input 
+          type="text" 
+          id='city' 
+          value={title} 
+          onChange={e => setTitle(e.target.value)}
+        />
+        <label htmlFor="price">Price: $</label>
+        <input 
+          type="number" 
+          id='price' 
+          value={price} 
+          onChange={e => setPrice(Number(e.target.value))}
+          className={styles.price}
+        />
+        <button onClick={e => onHandleAddPoint(e)}>Add</button>
+      </form>
+      {isSuccess && <div className={styles.success}>Delivery point added successfully!</div>}
       {categories &&
         <div className="">
           {categories.map((category, index) =>
