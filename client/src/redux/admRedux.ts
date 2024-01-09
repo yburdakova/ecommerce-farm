@@ -14,12 +14,16 @@ const admSlice = createSlice({
     addDelivery: (state, action) => {
       state.delivery = action.payload
     },
+    addCategories: (state, action) => {
+      state.categories = action.payload
+    },
 
   }
 });
 
 export const { 
   addDelivery, 
+  addCategories
 } = admSlice.actions;
 
 export default admSlice.reducer;

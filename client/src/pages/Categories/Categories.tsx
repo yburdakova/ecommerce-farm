@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { CategoryData } from '../../constants/types';
 import { userRequest } from '../../middleware/requestMethods';
 import styles from './Categories.module.css'
+import { addCategories } from '../../redux/admRedux';
 
 const Categories = () => {
 
@@ -19,6 +20,7 @@ const Categories = () => {
         try {
           const response = await userRequest(admin.accessToken).get("/categories");
           console.log(response)
+          dispatch(addCategories(categories))
           return setCategories(response.data)
         } catch (error) {
           console.log(error);
@@ -28,7 +30,7 @@ const Categories = () => {
   getProducts();
   }, [admin])
 
-  const onHandleAddPoint = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onHandleAddCat = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
     if (!catName) {
@@ -39,7 +41,7 @@ const Categories = () => {
     const makeRequest = async () => {
       if (admin) {
         try {
-          const response = await userRequest(admin.accessToken).post("/delivery/add_category", {
+          const response = await userRequest(admin.accessToken).post("/categories/add_category", {
             title: catName
           });
           console.log('Delivery point added:', response.data);
@@ -68,7 +70,7 @@ const Categories = () => {
           value={catName} 
           onChange={e => setCatName(e.target.value)}
         />
-        <button onClick={e => onHandleAddPoint(e)}>Add</button>
+        <button onClick={e => onHandleAddCat(e)}>Add</button>
       </form>
       {isSuccess && <div className={styles.success}>Delivery point added successfully!</div>}
       {categories &&
