@@ -28,7 +28,7 @@ const Categories = () => {
       }
   }
   getProducts();
-  }, [admin])
+  }, [admin, catName])
 
   const onHandleAddCat = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();

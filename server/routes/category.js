@@ -16,6 +16,7 @@ router.post("/add_category", verifyTokenAndAdmin, async (req, res) => {
         res.status(201).json(savedCategory);
     } catch (err) {
         res.status(500).json(err);
+        console.log(err.message)
     }
 });
 
