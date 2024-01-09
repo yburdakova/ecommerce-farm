@@ -61,9 +61,9 @@ const Categories = () => {
   return (
     <div>
       <h2>Categories</h2>
-      <div className="">Add new delivery point</div>
+      <div className="">Add new category</div>
       <form className={styles.form}>
-        <label htmlFor="city">Name of delivery point:</label>
+        <label htmlFor="city">Name of category:</label>
         <input 
           type="text" 
           id='city' 
@@ -72,7 +72,7 @@ const Categories = () => {
         />
         <button onClick={e => onHandleAddCat(e)}>Add</button>
       </form>
-      {isSuccess && <div className={styles.success}>Delivery point added successfully!</div>}
+      {isSuccess && <div className={styles.success}>Category added successfully!</div>}
       {categories &&
         <div className="">
           {categories.map((category, index) =>
