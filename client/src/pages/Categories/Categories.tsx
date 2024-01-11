@@ -11,6 +11,7 @@ const Categories = () => {
   const admin = useSelector((state: RootState) => state.user.currentUser);
   const dispatch = useDispatch();
   const [catName, setCatName] = useState('');
+  const [icon, setIcon] = useState("");
   const [categories, setCategories] = useState<CategoryData[]>([])
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -30,6 +31,12 @@ const Categories = () => {
   getProducts();
   }, [admin, catName])
 
+  const handleImageChange = (e) => {
+    if (e.target.files[0]) {
+      setIcon(e.target.files[0]);
+    }
+  }
+
   const onHandleAddCat = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
@@ -42,7 +49,8 @@ const Categories = () => {
       if (admin) {
         try {
           const response = await userRequest(admin.accessToken).post("/categories/add_category", {
-            title: catName
+            title: catName,
+            icon: ""
           });
           console.log('Delivery point added:', response.data);
           setCatName('');
@@ -80,6 +88,8 @@ const Categories = () => {
               <div className="">{index+1}.</div>
               <div className="">{category.title}</div>
               <div className="">Number of products: X</div>
+              <button>change</button>
+              <button>delete</button>
             </div>
           )}
         </div>

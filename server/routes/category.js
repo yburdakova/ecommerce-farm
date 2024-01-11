@@ -8,7 +8,8 @@ const router = express.Router();
 
 router.post("/add_category", verifyTokenAndAdmin, async (req, res) => {
     const newCategory = new Category({
-        title: req.body.title
+        title: req.body.title,
+        icon: req.body.icon
     });
 
     try {
