@@ -11,7 +11,7 @@ const Categories = () => {
   const admin = useSelector((state: RootState) => state.user.currentUser);
   const dispatch = useDispatch();
   const [catName, setCatName] = useState('');
-  const [icon, setIcon] = useState("");
+
   const [categories, setCategories] = useState<CategoryData[]>([])
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -31,11 +31,7 @@ const Categories = () => {
   getProducts();
   }, [admin, catName])
 
-  const handleImageChange = (e) => {
-    if (e.target.files[0]) {
-      setIcon(e.target.files[0]);
-    }
-  }
+
 
   const onHandleAddCat = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
