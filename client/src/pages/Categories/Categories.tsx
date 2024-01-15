@@ -5,6 +5,7 @@ import { CategoryData } from '../../constants/types';
 import { userRequest } from '../../middleware/requestMethods';
 import styles from './Categories.module.css'
 import { addCategories } from '../../redux/admRedux';
+import uploadImage from '../../middleware/uploadImage';
 
 const Categories = () => {
 
@@ -30,35 +31,9 @@ const Categories = () => {
     getCategories();
   }, [admin, isSuccess])
 
-  const uploadImage = async (file: File) => {
-
-    if (!admin || !admin.accessToken) {
-      console.error('Authentication error: Admin or access token is missing.');
-      return; 
-    }
-
-    try {
-      const signResponse = await userRequest(admin.accessToken).get('/upload-image/sign');
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('timestamp', signResponse.data.timestamp);
-      formData.append('signature', signResponse.data.signature);
-      formData.append('api_key', signResponse.data.api_key);
-
-      const uploadResponse = await fetch(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/upload`, {
-        method: 'POST',
-        body: formData
-      });
-
-      const data = await uploadResponse.json();
-      return data.secure_url;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const onHandleAddCat = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
+    
     if (!admin || !admin.accessToken) {
       console.error('Authentication error: Admin or access token is missing.');
       return; 
@@ -69,7 +44,7 @@ const Categories = () => {
       return;
     }
 
-    const imageUrl = await uploadImage(icon);
+    const imageUrl = await uploadImage(icon, admin.accessToken); 
     if (imageUrl) {
       try {
         const response = await userRequest(admin.accessToken).post('/categories/add_category', {

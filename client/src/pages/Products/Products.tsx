@@ -9,6 +9,8 @@ const Products = () => {
 
   const admin = useSelector((state: RootState) => state.user.currentUser);
   const [products, setProducts] = useState<ProductData[]>([])
+  const [productName, setProductName] = useState('')
+  const [image, setImage] = useState<File | null>(null);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -25,10 +27,31 @@ const Products = () => {
   getProducts();
   }, [admin])
 
+  const onHandleAddProduct = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+  }
 
   return (
     <div>
       <h2>Products</h2>
+      <div className="">Add new product</div>
+      <form className={styles.form}>
+        <label htmlFor="catName">Name of category:</label>
+        <input 
+          type="text" 
+          id='productName' 
+          value={productName} 
+          onChange={e => setProductName(e.target.value)}
+        />
+        <label htmlFor="icon">Icon:</label>
+        <input 
+          type="file" 
+          id="icon"
+          accept=".png, .jpg, .jpeg, .webp" 
+          onChange={e => e.target.files && setImage(e.target.files[0])}
+        />
+        <button onClick={e => onHandleAddProduct(e)}>Add</button>
+      </form>
       <div className="">
         {products &&
           <div className="">
