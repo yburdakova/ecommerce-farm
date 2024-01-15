@@ -11,6 +11,7 @@ const uploadImage = async ( file: File, accessToken: string) => {
     formData.append('timestamp', signResponse.data.timestamp);
     formData.append('signature', signResponse.data.signature);
     formData.append('api_key', signResponse.data.api_key);
+    formData.append('folder', 'Farm');
 
     const uploadResponse = await fetch(`${UPLOAD_URL}/${CLOUD_NAME}/upload`, {
       method: 'POST',
