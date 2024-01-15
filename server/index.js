@@ -2,8 +2,6 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import cloudinary from 'cloudinary';
-import multer from 'multer';
 import { 
     authRouter, 
     categoryRouter, 
@@ -12,7 +10,8 @@ import {
     userRouter, 
     orderRouter, 
     cartRouter, 
-    deliveryRouter
+    deliveryRouter,
+    uploadImageRouter
 } from './routes/index.js';
 
 
@@ -43,6 +42,7 @@ app.use("/api/delivery", deliveryRouter)
 app.use("/api/checkout", stripeRouter)
 app.use("/api/orders", orderRouter)
 app.use("/api/cart", cartRouter)
+app.use("/api/upload-image", uploadImageRouter);
 
 
 app.use((err, req, res, next) => {

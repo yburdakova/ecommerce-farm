@@ -6,6 +6,7 @@ import authRouter from './auth.js'
 import productRouter from './product.js'
 import stripeRouter from './stripe.js'
 import deliveryRouter from './delivery.js'
+import uploadImageRouter from './uploadImage.js'
 
 
 export {
@@ -16,5 +17,6 @@ export {
     categoryRouter,
     productRouter,
     stripeRouter,
-    deliveryRouter
+    deliveryRouter,
+    uploadImageRouter
 } 
