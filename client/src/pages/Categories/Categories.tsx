@@ -31,7 +31,12 @@ const Categories = () => {
   }, [admin, isSuccess])
 
   const uploadImage = async (file: File) => {
-    console.log('Cloudinary Cloud Name:', import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
+
+    if (!admin || !admin.accessToken) {
+      console.error('Authentication error: Admin or access token is missing.');
+      return; 
+    }
+
     try {
       const signResponse = await userRequest(admin.accessToken).get('/upload-image/sign');
       const formData = new FormData();
@@ -54,6 +59,11 @@ const Categories = () => {
 
   const onHandleAddCat = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
+    if (!admin || !admin.accessToken) {
+      console.error('Authentication error: Admin or access token is missing.');
+      return; 
+    }
+
     if (!catName || !icon) {
       alert('Please provide valid title and icon.');
       return;
@@ -106,7 +116,11 @@ const Categories = () => {
           {categories.map((category, index) =>
             <div className={styles.item} key={category._id}>
               <div className="">{index+1}.</div>
-              {category.icon && <img src={category.icon} alt={category.title} />}
+              {category.icon && 
+                <div className={styles.imgBox}>
+                  <img src={category.icon} alt="product image"/>
+                </div>
+              }
               <div className="">{category.title}</div>
               <div className="">Number of products: X</div>
               <button>change</button>
