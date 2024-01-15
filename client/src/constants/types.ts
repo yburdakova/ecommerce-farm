@@ -74,6 +74,7 @@ export interface CartItemProps {
 export interface CategoryData {
   _id: string;
   title: string;
+  icon?: string;
   createdAt?: Date;
   updatedAt?: Date,
 }

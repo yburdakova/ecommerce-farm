@@ -11,59 +11,72 @@ const Categories = () => {
   const admin = useSelector((state: RootState) => state.user.currentUser);
   const dispatch = useDispatch();
   const [catName, setCatName] = useState('');
-  const [icon, setIcon] = useState("");
+  const [icon, setIcon] = useState<File | null>(null);
   const [categories, setCategories] = useState<CategoryData[]>([])
   const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
-    const getProducts = async () => {
+    const getCategories = async () => {
       if (admin?.isAdmin) {
         try {
           const response = await userRequest(admin.accessToken).get("/categories");
-          console.log(response)
           dispatch(addCategories(categories))
-          return setCategories(response.data)
+          setCategories(response.data)
         } catch (error) {
           console.log(error);
         }
       }
-  }
-  getProducts();
-  }, [admin, catName])
-
-  const handleImageChange = (e) => {
-    if (e.target.files[0]) {
-      setIcon(e.target.files[0]);
     }
-  }
+    getCategories();
+  }, [admin, isSuccess])
 
-  const onHandleAddCat = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const uploadImage = async (file: File) => {
+    console.log('Cloudinary Cloud Name:', import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
+    try {
+      const signResponse = await userRequest(admin.accessToken).get('/upload-image/sign');
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('timestamp', signResponse.data.timestamp);
+      formData.append('signature', signResponse.data.signature);
+      formData.append('api_key', signResponse.data.api_key);
+
+      const uploadResponse = await fetch(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/upload`, {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await uploadResponse.json();
+      return data.secure_url;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onHandleAddCat = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-
-    if (!catName) {
-      alert('Please provide valid title and price.');
+    if (!catName || !icon) {
+      alert('Please provide valid title and icon.');
       return;
     }
 
-    const makeRequest = async () => {
-      if (admin) {
-        try {
-          const response = await userRequest(admin.accessToken).post("/categories/add_category", {
-            title: catName,
-            icon: ""
-          });
-          console.log('Delivery point added:', response.data);
-          setCatName('');
-          setIsSuccess(true);
-          setTimeout(() => {
-            setIsSuccess(false);
-          }, 2000);
-        } catch (error) {
-          console.log(error);
-        }
+    const imageUrl = await uploadImage(icon);
+    if (imageUrl) {
+      try {
+        const response = await userRequest(admin.accessToken).post('/categories/add_category', {
+          title: catName,
+          icon: imageUrl
+        });
+        console.log('Category added:', response.data);
+        setCatName('');
+        setIcon(null);
+        setIsSuccess(true);
+        setTimeout(() => {
+          setIsSuccess(false);
+        }, 2000);
+      } catch (error) {
+        console.log(error);
       }
-    };
-    makeRequest();
+    }
   };
   
   return (
@@ -71,12 +84,19 @@ const Categories = () => {
       <h2>Categories</h2>
       <div className="">Add new category</div>
       <form className={styles.form}>
-        <label htmlFor="city">Name of category:</label>
+        <label htmlFor="catName">Name of category:</label>
         <input 
           type="text" 
-          id='city' 
+          id='catName' 
           value={catName} 
           onChange={e => setCatName(e.target.value)}
+        />
+        <label htmlFor="icon">Icon:</label>
+        <input 
+          type="file" 
+          id="icon"
+          accept=".png, .svg" 
+          onChange={e => e.target.files && setIcon(e.target.files[0])}
         />
         <button onClick={e => onHandleAddCat(e)}>Add</button>
       </form>
@@ -86,6 +106,7 @@ const Categories = () => {
           {categories.map((category, index) =>
             <div className={styles.item} key={category._id}>
               <div className="">{index+1}.</div>
+              {category.icon && <img src={category.icon} alt={category.title} />}
               <div className="">{category.title}</div>
               <div className="">Number of products: X</div>
               <button>change</button>
