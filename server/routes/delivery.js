@@ -36,4 +36,33 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
     }
 });
 
+//DELETE DELIVERY POINT
+
+router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
+    try {
+    await Delivery.findByIdAndDelete(req.params.id);
+    res.status(200).json("Delivery point has been deleted...");
+    } catch (err) {
+    res.status(500).json(err);
+    }
+});
+
+//UPDATE
+
+router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+    
+    try {
+    const updatedDelivery = await Delivery.findByIdAndUpdate(
+        req.params.id,
+        {
+        $set: req.body,
+        },
+        { new: true }
+    );
+    res.status(200).json(updatedDelivery);
+    } catch (err) {
+    res.status(500).json(err);
+    }
+});
+
 export default router;
