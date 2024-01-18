@@ -7,7 +7,7 @@ import { DeliveryData } from '../../constants/types';
 import { addDelivery } from '../../redux/admRedux';
 
 const Delivery = () => {
-  const admin = useSelector((state: RootState) => state.user.currentUser);
+  const user = useSelector((state: RootState) => state.user.currentUser);
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState('');
@@ -20,9 +20,9 @@ const Delivery = () => {
 
   useEffect(() => {
     const getDelivery = async () => {
-      if (admin?.isAdmin) {
+      if (user) {
         try {
-          const response = await userRequest(admin.accessToken).get("/delivery");
+          const response = await userRequest(user.accessToken).get("/delivery");
           console.log(response)
           dispatch(addDelivery(response.data))
           return setDelivery(response.data)
@@ -32,7 +32,7 @@ const Delivery = () => {
       }
   }
   getDelivery();
-  }, [admin, title])
+  }, [user, title])
 
   const onHandleAddPoint = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -43,9 +43,9 @@ const Delivery = () => {
     }
 
     const makeRequest = async () => {
-      if (admin) {
+      if (user?.isAdmin) {
         try {
-          const response = await userRequest(admin.accessToken).post("/delivery/add_delivery", {
+          const response = await userRequest(user.accessToken).post("/delivery/add_delivery", {
             cityName: title,
             price: price
           });
@@ -65,9 +65,9 @@ const Delivery = () => {
   };
 
   const onHandleDeletePoint = async (pointId: string) => {
-    if (admin) {
+    if (user?.isAdmin) {
       try {
-        const response = await userRequest(admin.accessToken).delete(`/delivery/${pointId}`);
+        const response = await userRequest(user.accessToken).delete(`/delivery/${pointId}`);
         console.log('Delivery point added:', response.data);
         setDelivery(delivery.filter(item => item._id !== pointId));
       } catch (error) {
@@ -83,9 +83,9 @@ const Delivery = () => {
   }
 
   const onHandleSave = async (pointId:string) => {
-    if (admin) {
+    if (user?.isAdmin) {
       try {
-        const response = await userRequest(admin.accessToken).put(`/delivery/${pointId}`, {
+        const response = await userRequest(user.accessToken).put(`/delivery/${pointId}`, {
           cityName: editingTitle,
           price: editingPrice
         });

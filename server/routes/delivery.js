@@ -1,6 +1,6 @@
 import express from "express";
 import { Delivery } from "../models/index.js";
-import { verifyTokenAndAdmin } from "./verifyToken.js";
+import { verifyToken, verifyTokenAndAdmin } from "./verifyToken.js";
 
 const router = express.Router();
 
@@ -23,7 +23,7 @@ router.post("/add_delivery", verifyTokenAndAdmin, async (req, res) => {
 
 //GET ALL DELIVERY POINTS
 
-router.get("/", verifyTokenAndAdmin, async (req, res) => {
+router.get("/", verifyToken, async (req, res) => {
     const query = req.query.new;
     try {
     const delivery = query
