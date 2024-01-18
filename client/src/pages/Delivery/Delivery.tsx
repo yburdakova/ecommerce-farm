@@ -14,6 +14,9 @@ const Delivery = () => {
   const [price, setPrice] = useState(0);
   const [isSuccess, setIsSuccess] = useState(false);
   const [delivery, setDelivery] = useState<DeliveryData[]>([])
+  const [editingPoint, setEditingPoint] = useState('');
+  const [editingTitle, setEditingTitle] = useState('');
+  const [editingPrice, setEditingPrice] = useState(0)
 
   useEffect(() => {
     const getDelivery = async () => {
@@ -61,6 +64,46 @@ const Delivery = () => {
     makeRequest();
   };
 
+  const onHandleDeletePoint = async (pointId: string) => {
+    if (admin) {
+      try {
+        const response = await userRequest(admin.accessToken).delete(`/delivery/${pointId}`);
+        console.log('Delivery point added:', response.data);
+        setDelivery(delivery.filter(item => item._id !== pointId));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
+  const onHandleEdit = (item:DeliveryData) => {
+    setEditingPoint(item._id);
+    setEditingTitle(item.cityName)
+    setEditingPrice(item.price)
+  }
+
+  const onHandleSave = async (pointId:string) => {
+    if (admin) {
+      try {
+        const response = await userRequest(admin.accessToken).put(`/delivery/${pointId}`, {
+          cityName: editingTitle,
+          price: editingPrice
+        });
+        console.log('Delivery point updated:', response.data);
+  
+        // Обновляем состояние
+        const updatedDelivery = delivery.map(item => 
+          item._id === pointId ? {...item, cityName: editingTitle, price: editingPrice} : item
+        );
+        setDelivery(updatedDelivery);
+  
+        setEditingPoint('');
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
   return (
     <div>
       <h2>Delivery</h2>
@@ -83,17 +126,37 @@ const Delivery = () => {
         />
         <button onClick={e => onHandleAddPoint(e)}>Add</button>
       </form>
-      {isSuccess && <div className={styles.success}>Delivery point added successfully!</div>}
-      <div className="">
+      {isSuccess && <div className={styles.success}>Successfully!</div>}
+      <div className={styles.list}>
         {delivery && 
           <div className="">
             {delivery.map((deliveryItem,index) =>(
               <div className={styles.listItem} key={`category-${index}`}>
                 <div className="">{index+1}.</div>
-                <div className="">{deliveryItem.cityName}</div>
-                <div className="">{deliveryItem.price}</div>
-                <button>change</button>
-                <button>delete</button>
+              
+                { editingPoint == deliveryItem._id
+                  ? <>
+                      <input 
+                        type="text" 
+                        value={editingTitle}
+                        onChange={e => setEditingTitle(e.target.value)}
+                      />
+                      <input 
+                        type="number" 
+                        value={editingPrice} 
+                        onChange={e => setEditingPrice(Number(e.target.value))}
+                      />
+                      <button onClick={()=>onHandleSave(deliveryItem._id)}>Save</button>
+                    </>
+                  : <>
+                      <div className="">{deliveryItem.cityName}</div>
+                      <div className="">{deliveryItem.price}</div>
+                      <button onClick={()=> onHandleEdit(deliveryItem)}>Edit</button>
+                    </>
+                  
+                  
+                }
+                <button onClick={()=> onHandleDeletePoint(deliveryItem._id)}>Delete</button>
               </div>
             ))}
           </div>
