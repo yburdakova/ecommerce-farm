@@ -2,30 +2,32 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { userRequest } from '../../middleware/requestMethods';
-import { addDelivery } from '../../redux/admRedux';
+import { addCategories, addDelivery } from '../../redux/admRedux';
 
 const AdmDashboard = () => {
-  const admin = useSelector((state: RootState) => state.user.currentUser);
+  const user = useSelector((state: RootState) => state.user.currentUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const getData = async () => {
-      if (admin?.isAdmin) {
+      if (user?.isAdmin) {
         try {
-          const response = await userRequest(admin.accessToken).get("/delivery");
-          console.log(response)
-          dispatch(addDelivery(response.data))
+          const responseDelivery = await userRequest(user.accessToken).get("/delivery");
+          const responseCategories = await userRequest(user.accessToken).get("/categories");
+          dispatch(addDelivery(responseDelivery.data))
+          dispatch(addCategories(responseCategories.data))
         } catch (error) {
           console.log(error);
         }
       }
   }
   getData();
-  }, [admin])
+  }, [user])
 
   return (
     <div>
       <h2>Dashboard</h2>
+      {}
     </div>
   )
 }
