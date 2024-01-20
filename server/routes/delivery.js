@@ -47,7 +47,7 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
     }
 });
 
-//UPDATE
+//UPDATE DELIVERY POINT
 
 router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
     

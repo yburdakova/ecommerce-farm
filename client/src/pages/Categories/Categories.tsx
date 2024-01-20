@@ -9,18 +9,21 @@ import uploadImage from '../../middleware/uploadImage';
 
 const Categories = () => {
 
-  const admin = useSelector((state: RootState) => state.user.currentUser);
+  const user = useSelector((state: RootState) => state.user.currentUser);
   const dispatch = useDispatch();
   const [catName, setCatName] = useState('');
   const [icon, setIcon] = useState<File | null>(null);
   const [categories, setCategories] = useState<CategoryData[]>([])
   const [isSuccess, setIsSuccess] = useState(false);
+  const [editingCategory, setEditingCategory] = useState('');
+  const [editingTitle, setEditingTitle] = useState('');
+  const [editingIcon, setEditingIcon] = useState<File | null>(null);
 
   useEffect(() => {
     const getCategories = async () => {
-      if (admin?.isAdmin) {
+      if (user?.isAdmin) {
         try {
-          const response = await userRequest(admin.accessToken).get("/categories");
+          const response = await userRequest(user.accessToken).get("/categories");
           dispatch(addCategories(categories))
           setCategories(response.data)
         } catch (error) {
@@ -29,7 +32,7 @@ const Categories = () => {
       }
     }
     getCategories();
-  }, [admin, isSuccess])
+  }, [user, isSuccess])
 
   const onHandleAddCat = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -63,6 +66,52 @@ const Categories = () => {
       }
     }
   };
+
+  const onHandleEdit = (category: CategoryData) => {
+    setEditingCategory(category._id);
+    setEditingTitle(category.title);
+    setEditingIcon(null); 
+  }
+
+  const onHandleSave = async (categoryId: string) => {
+    if (!user?.isAdmin) {
+      console.error('Authentication error: Admin or access token is missing.');
+      return; 
+    }
+  
+    const imageUrl = editingIcon ? await uploadImage(editingIcon, user.accessToken) : null;
+  
+    try {
+      const response = await userRequest(user.accessToken).put(`/categories/${categoryId}`, {
+        title: editingTitle,
+        icon: imageUrl || categories.find(cat => cat._id === categoryId)?.icon
+      });
+      console.log('Category updated:', response.data);
+  
+      const updatedCategories = categories.map(cat => 
+        cat._id === categoryId ? { ...cat, title: editingTitle, icon: imageUrl || cat.icon } : cat
+      );
+      setCategories(updatedCategories);
+
+      setEditingCategory('');
+      setEditingTitle('');
+      setEditingIcon(null);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  const onHandleDelete = async (id: string) => {
+    if (user?.isAdmin) {
+      try {
+        const response = await userRequest(user.accessToken).delete(`/categories/${id}`);
+        console.log('Delivery point added:', response.data);
+        setCategories(categories.filter(item => item._id !== id));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
   
   return (
     <div>
@@ -86,26 +135,42 @@ const Categories = () => {
         <button onClick={e => onHandleAddCat(e)}>Add</button>
       </form>
       {isSuccess && <div className={styles.success}>Category added successfully!</div>}
-      {categories &&
-        <div className="">
-          {categories.map((category, index) =>
-            <div className={styles.item} key={category._id}>
-              <div className="">{index+1}.</div>
-              {category.icon && 
-                <div className={styles.imgBox}>
-                  <img src={category.icon} alt="product image"/>
-                </div>
-              }
-              <div className="">{category.title}</div>
-              <div className="">Number of products: X</div>
-              <button>change</button>
-              <button>delete</button>
-            </div>
-          )}
-        </div>
-      }
+      <div className={styles.list}>
+        {categories.map((category, index) => (
+          <div className={styles.item} key={category._id}>
+            <div className="">{index+1}.</div>
+            {editingCategory === category._id ? (
+              <>
+                <input 
+                  type="text" 
+                  value={editingTitle} 
+                  onChange={e => setEditingTitle(e.target.value)}
+                />
+                <input 
+                  type="file" 
+                  accept=".png, .svg" 
+                  onChange={e => e.target.files && setEditingIcon(e.target.files[0])}
+                />
+                <button onClick={() => onHandleSave(category._id)}>Save</button>
+              </>
+            ) : (
+              <>
+                {category.icon && 
+                  <div className={styles.imgBox}>
+                    <img src={category.icon} alt="Category icon"/>
+                  </div>
+                }
+                <div className="">{category.title}</div>
+                <button onClick={() => onHandleEdit(category)}>Edit</button>
+                <button onClick={()=> onHandleDelete(category._id)}>Delete</button>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
-  )
+  );
+  
 }
 
 export default Categories

@@ -35,4 +35,34 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
     }
 });
 
+//DELETE CATEGORY
+
+router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
+    try {
+    await Category.findByIdAndDelete(req.params.id);
+    res.status(200).json("Category has been deleted...");
+    } catch (err) {
+    res.status(500).json(err);
+    }
+});
+
+//UPDATE CATEGORY
+
+router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+    
+    try {
+    const updatedCategory = await Category.findByIdAndUpdate(
+        req.params.id,
+        {
+        $set: req.body,
+        },
+        { new: true }
+    );
+    res.status(200).json(updatedCategory);
+    } catch (err) {
+    res.status(500).json(err);
+    }
+});
+
 export default router;
+
