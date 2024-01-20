@@ -34,3 +34,7 @@
   object-fit: cover;
   width: 100%;
 }
+
+.previewContainer{
+  width: 100px;
+}
